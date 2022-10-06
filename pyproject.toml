@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "clean-workspace"
+version = "0.1.0"
+description = ""
+authors = ["Michael Bianco <mike@mikebian.co>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyobjc-framework-ScriptingBridge = "^8.5.1"
+todoist-api-python = "^2.0.1"
+python-dotenv = "^0.21.0"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.5.0"
+ipython-autoimport = "^0.4"
+pdbr = "^0.7.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
