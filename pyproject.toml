@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "clean-workspace"
+name = "clean-browsers"
 version = "0.1.0"
 description = ""
 authors = ["Michael Bianco <mike@mikebian.co>"]
