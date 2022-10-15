@@ -13,7 +13,8 @@ We'll see if this actually helps!
 ## Usage
 
 * Add your todoist token to `.envrc`
-* Customize the url blacklist
+* Customize the url and domain blacklist
+* Run with `poetry run python archive.py`
 
 ## Inspiration
 
