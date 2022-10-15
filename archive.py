@@ -36,15 +36,27 @@ with open(os.path.expanduser("~") + '/Library/Safari/Bookmarks.plist', 'rb') as 
 
 # user configurable blacklist for urls you don't want to archive
 url_blacklist = []
-with open('blacklist.txt', 'r') as f:
+with open('blacklist_urls.txt', 'r') as f:
   url_blacklist = f.read().splitlines()
+
+domain_blacklist = []
+with open('blacklist_domains.txt', 'r') as f:
+  domain_blacklist = f.read().splitlines()
+
+# TODO output skipped domains
+# TODO support wildcard subdomains
+# filter all urls with blacklisted domains
+safari_urls = [x for x in safari_urls if x[0].split('/')[2] not in domain_blacklist]
 
 # join url and name with "-" and print to stdout
 todoist_content = ""
 for url_with_name in safari_urls:
   if url_with_name[0] not in bookmarks_urls_without_anchors and url_with_name[0] not in url_blacklist:
-    print(" - ".join(url_with_name))
-    todoist_content += "* " + " - ".join(url_with_name)
+    todoist_content += "* " + " - ".join(url_with_name) + "\n"
+  else:
+    print(f"skipping url\t{url_with_name[0]}")
+
+print(f"\n{todoist_content}\n")
 
 # since we've archived all content we can now close out safari
 os.system('osascript -e \'quit app "Safari"\'')

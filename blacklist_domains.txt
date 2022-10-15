@@ -1,0 +1,4 @@
+google.com
+www.google.com
+amazon.com
+smile.amazon.com
