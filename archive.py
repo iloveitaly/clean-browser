@@ -1,7 +1,15 @@
 import plistlib
 import os
+import sys
 
 from ScriptingBridge import *
+
+# TODO maybe optionally collect via applescript input dialog?
+# get first CLI argument if it exists
+if len(sys.argv) > 1:
+  tab_description = sys.argv[1] + " "
+else:
+  tab_description = ''
 
 safari = SBApplication.applicationWithBundleIdentifier_("com.apple.safari")
 safari_urls = []
@@ -61,6 +69,7 @@ print(f"\n{todoist_content}\n")
 # since we've archived all content we can now close out safari
 os.system('osascript -e \'quit app "Safari"\'')
 
+# TODO should also support .env here as well
 import dotenv
 dotenv.load_dotenv(".envrc")
 
@@ -86,11 +95,13 @@ if todoist_api_key:
   else:
     label = label_matches[0]
 
-  # https://developer.todoist.com/rest/v1/#create-a-new-task
-  api.add_task(
+  # https://developer.todoist.com/rest/v2#create-a-new-task
+  response = api.add_task(
     # set content to "web archive CURRENT_DAY" using format YYYY-MM-DD
-    content="web archive {}".format(datetime.datetime.now().strftime("%Y-%m-%d")),
+    content="{}web archive {}".format(tab_description, datetime.datetime.now().strftime("%Y-%m-%d")),
     description=todoist_content,
     due_string="today",
-    label_ids=[label.id],
+    labels=["web-archive"],
   )
+
+  breakpoint()
