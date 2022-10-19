@@ -2,3 +2,4 @@ google.com
 www.google.com
 amazon.com
 smile.amazon.com
+us-east-2.console.aws.amazon.com
