@@ -103,5 +103,3 @@ if todoist_api_key:
     due_string="today",
     labels=["web-archive"],
   )
-
-  breakpoint()
