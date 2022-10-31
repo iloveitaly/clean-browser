@@ -4,10 +4,10 @@ import sys
 
 from ScriptingBridge import *
 
-# TODO maybe optionally collect via applescript input dialog?
+# TODO maybe optionally collect via applescript input dialog? We'd need to develop a proper interface for the CLI at that point.
 # get first CLI argument if it exists
-if len(sys.argv) > 1:
-  tab_description = sys.argv[1] + " "
+if len(sys.argv) > 1 and sys.argv[1].strip():
+  tab_description = sys.argv[1].strip() + " "
 else:
   tab_description = ''
 
