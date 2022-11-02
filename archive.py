@@ -23,6 +23,9 @@ for window in safari.windows():
 # if page is blank, there is no url
 safari_urls = [x for x in safari_urls if x[0] is not None]
 
+# remove duplicates
+safari_urls = list(set(safari_urls))
+
 # sort (in place) list of urls by domain name of url
 safari_urls.sort(key=lambda x: x[0].split('/')[2])
 
