@@ -67,6 +67,10 @@ for url_with_name in safari_urls:
   else:
     print(f"skipping url\t{url_with_name[0]}")
 
+if not todoist_content.strip():
+  print("no urls to add, exiting")
+  sys.exit()
+
 print(f"\n{todoist_content}\n")
 
 # since we've archived all content we can now close out safari
