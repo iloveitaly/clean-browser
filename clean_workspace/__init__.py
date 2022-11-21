@@ -4,7 +4,7 @@ import sys
 
 from ScriptingBridge import *
 
-def export_to_todoist(content, description):
+def export_to_todoist(task_content, description):
   # TODO should also support .env here as well
   import dotenv
   dotenv.load_dotenv(".envrc")
@@ -37,8 +37,8 @@ def export_to_todoist(content, description):
   # https://developer.todoist.com/rest/v2#create-a-new-task
   response = api.add_task(
     # set content to "web archive CURRENT_DAY" using format YYYY-MM-DD
-    content="{}web archive {}".format(tab_description, datetime.datetime.now().strftime("%Y-%m-%d")),
-    description=todoist_content,
+    content="{}web archive {}".format(description, datetime.datetime.now().strftime("%Y-%m-%d")),
+    description=task_content,
     due_string="today",
     labels=["web-archive"],
   )
@@ -60,8 +60,8 @@ def main():
           # it doesn't look possible to close out the tabs with SBApplication :/
           # instead we just close out the whole application below
 
-  # if page is blank, there is no url
-  safari_urls = [x for x in safari_urls if x[0] is not None]
+  # if page is blank, there is no url or string does not contain http
+  safari_urls = [x for x in safari_urls if x[0] is not None and "http" in x[0]]
 
   # remove duplicates
   safari_urls = list(set(safari_urls))
@@ -93,6 +93,8 @@ def main():
   domain_blacklist = []
   with open('blacklist_domains.txt', 'r') as f:
     domain_blacklist = f.read().splitlines()
+    # add a `www.` prefix to each domain in the blacklist and merge it with the existing list
+    domain_blacklist = domain_blacklist + ["www." + domain for domain in domain_blacklist]
 
   # TODO output skipped domains
   # TODO support wildcard subdomains

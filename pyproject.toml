@@ -18,7 +18,7 @@ ipython-autoimport = "^0.4"
 pdbr = "^0.7.3"
 
 [tool.poetry.scripts]
-clean-workspace = "clean_workspace.archive:main"
+clean-workspace = "clean_workspace:main"
 
 [build-system]
 requires = ["poetry-core"]
