@@ -10,11 +10,30 @@ them to the terminal.
 
 We'll see if this actually helps!
 
+## Installation
+
+```
+poetry install
+clean-workspace
+```
+
 ## Usage
 
-* Add your todoist token to `.envrc`
+* Add your todoist token to `.envrc` and `direnv allow .`
 * Customize the url and domain blacklist
-* Run with `poetry run python archive.py`
+
+### Collecting Tab Description Via AppleScript
+
+Here's a quick script you can use to collect a description of what you were working on via applescript:
+
+```shell
+dialogResult=$(
+osascript <<EOT
+set dialogResult to display dialog "What were you working on yesterday?" buttons {"OK"} default button "OK" giving up after 300 default answer ""
+return text returned of dialogResult
+EOT
+)
+```
 
 ## Inspiration
 
