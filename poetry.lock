@@ -8,7 +8,7 @@ python-versions = "*"
 
 [[package]]
 name = "asttokens"
-version = "2.0.8"
+version = "2.1.0"
 description = "Annotate AST trees with source code positions"
 category = "dev"
 optional = false
@@ -32,7 +32,7 @@ python-versions = ">=3.5"
 dev = ["cloudpickle", "coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy (>=0.900,!=0.940)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "sphinx", "sphinx-notfound-page", "zope.interface"]
 docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
 tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "zope.interface"]
-tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
+tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "backcall"
@@ -59,15 +59,15 @@ optional = false
 python-versions = ">=3.6.0"
 
 [package.extras]
-unicode_backport = ["unicodedata2"]
+unicode-backport = ["unicodedata2"]
 
 [[package]]
 name = "colorama"
-version = "0.4.5"
+version = "0.4.6"
 description = "Cross-platform colored terminal text."
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 
 [[package]]
 name = "commonmark"
@@ -90,7 +90,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "executing"
-version = "1.1.0"
+version = "1.2.0"
 description = "Get the currently executing AST node of a frame, and other information"
 category = "dev"
 optional = false
@@ -123,7 +123,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "ipython"
-version = "8.5.0"
+version = "8.6.0"
 description = "IPython: Productive Interactive Computing"
 category = "dev"
 optional = false
@@ -144,9 +144,9 @@ stack-data = "*"
 traitlets = ">=5"
 
 [package.extras]
-all = ["Sphinx (>=1.3)", "black", "curio", "ipykernel", "ipyparallel", "ipywidgets", "matplotlib (!=3.2.0)", "nbconvert", "nbformat", "notebook", "numpy (>=1.19)", "pandas", "pytest (<7.1)", "pytest-asyncio", "qtconsole", "testpath", "trio"]
+all = ["black", "curio", "docrepr", "ipykernel", "ipyparallel", "ipywidgets", "matplotlib", "matplotlib (!=3.2.0)", "nbconvert", "nbformat", "notebook", "numpy (>=1.20)", "pandas", "pytest (<7)", "pytest (<7.1)", "pytest-asyncio", "qtconsole", "setuptools (>=18.5)", "sphinx (>=1.3)", "sphinx-rtd-theme", "stack-data", "testpath", "trio", "typing-extensions"]
 black = ["black"]
-doc = ["Sphinx (>=1.3)"]
+doc = ["docrepr", "ipykernel", "matplotlib", "pytest (<7)", "pytest (<7.1)", "pytest-asyncio", "setuptools (>=18.5)", "sphinx (>=1.3)", "sphinx-rtd-theme", "stack-data", "testpath", "typing-extensions"]
 kernel = ["ipykernel"]
 nbconvert = ["nbconvert"]
 nbformat = ["nbformat"]
@@ -154,7 +154,7 @@ notebook = ["ipywidgets", "notebook"]
 parallel = ["ipyparallel"]
 qtconsole = ["qtconsole"]
 test = ["pytest (<7.1)", "pytest-asyncio", "testpath"]
-test_extra = ["curio", "matplotlib (!=3.2.0)", "nbformat", "numpy (>=1.19)", "pandas", "pytest (<7.1)", "pytest-asyncio", "testpath", "trio"]
+test-extra = ["curio", "matplotlib (!=3.2.0)", "nbformat", "numpy (>=1.20)", "pandas", "pytest (<7.1)", "pytest-asyncio", "testpath", "trio"]
 
 [[package]]
 name = "ipython-autoimport"
@@ -207,7 +207,7 @@ testing = ["docopt", "pytest (<6.0.0)"]
 
 [[package]]
 name = "pdbr"
-version = "0.7.3"
+version = "0.7.4"
 description = "Pdb with Rich library."
 category = "dev"
 optional = false
@@ -215,7 +215,7 @@ python-versions = ">=3.7.9,<4.0.0"
 
 [package.dependencies]
 icecream = ">=2.1.0,<3.0.0"
-pyreadline = {version = ">=2.1,<3.0", markers = "sys_platform == \"win32\""}
+pyreadline3 = {version = ">=3.4.1,<4.0.0", markers = "sys_platform == \"win32\""}
 rich = ">=12.0.0,<13.0.0"
 sqlparse = ">=0.4.2,<0.5.0"
 
@@ -244,7 +244,7 @@ python-versions = "*"
 
 [[package]]
 name = "prompt-toolkit"
-version = "3.0.31"
+version = "3.0.33"
 description = "Library for building powerful interactive command lines in Python"
 category = "dev"
 optional = false
@@ -273,7 +273,7 @@ python-versions = "*"
 tests = ["pytest"]
 
 [[package]]
-name = "Pygments"
+name = "pygments"
 version = "2.13.0"
 description = "Pygments is a syntax highlighting package written in Python."
 category = "dev"
@@ -285,39 +285,39 @@ plugins = ["importlib-metadata"]
 
 [[package]]
 name = "pyobjc-core"
-version = "8.5.1"
+version = "9.0"
 description = "Python<->ObjC Interoperability Module"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [[package]]
-name = "pyobjc-framework-Cocoa"
-version = "8.5.1"
+name = "pyobjc-framework-cocoa"
+version = "9.0"
 description = "Wrappers for the Cocoa frameworks on macOS"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
-pyobjc-core = ">=8.5.1"
+pyobjc-core = ">=9.0"
 
 [[package]]
-name = "pyobjc-framework-ScriptingBridge"
-version = "8.5.1"
+name = "pyobjc-framework-scriptingbridge"
+version = "9.0"
 description = "Wrappers for the framework ScriptingBridge on macOS"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
-pyobjc-core = ">=8.5.1"
-pyobjc-framework-Cocoa = ">=8.5.1"
+pyobjc-core = ">=9.0"
+pyobjc-framework-Cocoa = ">=9.0"
 
 [[package]]
-name = "pyreadline"
-version = "2.1"
-description = "A python implmementation of GNU readline."
+name = "pyreadline3"
+version = "3.4.1"
+description = "A python implementation of GNU readline."
 category = "dev"
 optional = false
 python-versions = "*"
@@ -349,7 +349,7 @@ urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)"]
-use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
+use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "rich"
@@ -384,15 +384,15 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "stack-data"
-version = "0.5.1"
+version = "0.6.1"
 description = "Extract data from python stack frames and tracebacks for informative displays"
 category = "dev"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-asttokens = "*"
-executing = "*"
+asttokens = ">=2.1.0"
+executing = ">=1.2.0"
 pure-eval = "*"
 
 [package.extras]
@@ -400,7 +400,7 @@ tests = ["cython", "littleutils", "pygments", "pytest", "typeguard"]
 
 [[package]]
 name = "todoist-api-python"
-version = "2.0.1"
+version = "2.0.2"
 description = "Official Python SDK for the Todoist REST API."
 category = "main"
 optional = false
@@ -412,13 +412,14 @@ requests = ">=2.26.0,<3.0.0"
 
 [[package]]
 name = "traitlets"
-version = "5.4.0"
+version = "5.5.0"
 description = ""
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 
 [package.extras]
+docs = ["myst-parser", "pydata-sphinx-theme", "sphinx"]
 test = ["pre-commit", "pytest"]
 
 [[package]]
@@ -445,7 +446,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a6dbcfd6c644f871dbee98fa7dff011ea72edc339bccda351a3344b6076e8719"
+content-hash = "d1ceb7476461cc8b61640b1c581784cd01ec1c351698762d0de62ed49200f7ab"
 
 [metadata.files]
 appnope = [
@@ -453,8 +454,8 @@ appnope = [
     {file = "appnope-0.1.3.tar.gz", hash = "sha256:02bd91c4de869fbb1e1c50aafc4098827a7a54ab2f39d9dcba6c9547ed920e24"},
 ]
 asttokens = [
-    {file = "asttokens-2.0.8-py2.py3-none-any.whl", hash = "sha256:e3305297c744ae53ffa032c45dc347286165e4ffce6875dc662b205db0623d86"},
-    {file = "asttokens-2.0.8.tar.gz", hash = "sha256:c61e16246ecfb2cde2958406b4c8ebc043c9e6d73aaa83c941673b35e5d3a76b"},
+    {file = "asttokens-2.1.0-py2.py3-none-any.whl", hash = "sha256:1b28ed85e254b724439afc783d4bee767f780b936c3fe8b3275332f42cf5f561"},
+    {file = "asttokens-2.1.0.tar.gz", hash = "sha256:4aa76401a151c8cc572d906aad7aea2a841780834a19d780f4321c0fe1b54635"},
 ]
 attrs = [
     {file = "attrs-22.1.0-py2.py3-none-any.whl", hash = "sha256:86efa402f67bf2df34f51a335487cf46b1ec130d02b8d39fd248abfd30da551c"},
@@ -473,8 +474,8 @@ charset-normalizer = [
     {file = "charset_normalizer-2.1.1-py3-none-any.whl", hash = "sha256:83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f"},
 ]
 colorama = [
-    {file = "colorama-0.4.5-py2.py3-none-any.whl", hash = "sha256:854bf444933e37f5824ae7bfc1e98d5bce2ebe4160d46b5edf346a89358e99da"},
-    {file = "colorama-0.4.5.tar.gz", hash = "sha256:e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4"},
+    {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
+    {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
 commonmark = [
     {file = "commonmark-0.9.1-py2.py3-none-any.whl", hash = "sha256:da2f38c92590f83de410ba1a3cbceafbc74fee9def35f9251ba9a971d6d66fd9"},
@@ -485,8 +486,8 @@ decorator = [
     {file = "decorator-5.1.1.tar.gz", hash = "sha256:637996211036b6385ef91435e4fae22989472f9d571faba8927ba8253acbc330"},
 ]
 executing = [
-    {file = "executing-1.1.0-py2.py3-none-any.whl", hash = "sha256:4a6d96ba89eb3dcc11483471061b42b9006d8c9f81c584dd04246944cd022530"},
-    {file = "executing-1.1.0.tar.gz", hash = "sha256:2c2c07d1ec4b2d8f9676b25170f1d8445c0ee2eb78901afb075a4b8d83608c6a"},
+    {file = "executing-1.2.0-py2.py3-none-any.whl", hash = "sha256:0314a69e37426e3608aada02473b4161d4caf5a4b244d1d0c48072b8fee7bacc"},
+    {file = "executing-1.2.0.tar.gz", hash = "sha256:19da64c18d2d851112f09c287f8d3dbbdf725ab0e569077efb6cdcbd3497c107"},
 ]
 icecream = [
     {file = "icecream-2.1.3-py2.py3-none-any.whl", hash = "sha256:757aec31ad4488b949bc4f499d18e6e5973c40cc4d4fc607229e78cfaec94c34"},
@@ -497,8 +498,8 @@ idna = [
     {file = "idna-3.4.tar.gz", hash = "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4"},
 ]
 ipython = [
-    {file = "ipython-8.5.0-py3-none-any.whl", hash = "sha256:6f090e29ab8ef8643e521763a4f1f39dc3914db643122b1e9d3328ff2e43ada2"},
-    {file = "ipython-8.5.0.tar.gz", hash = "sha256:097bdf5cd87576fd066179c9f7f208004f7a6864ee1b20f37d346c0bcb099f84"},
+    {file = "ipython-8.6.0-py3-none-any.whl", hash = "sha256:91ef03016bcf72dd17190f863476e7c799c6126ec7e8be97719d1bc9a78a59a4"},
+    {file = "ipython-8.6.0.tar.gz", hash = "sha256:7c959e3dedbf7ed81f9b9d8833df252c430610e2a4a6464ec13cd20975ce20a5"},
 ]
 ipython-autoimport = [
     {file = "ipython-autoimport-0.4.tar.gz", hash = "sha256:8afb1bb3327840a7a5f498a14128f29732f05747c3ac8516ad137cc7e72be2ba"},
@@ -516,8 +517,8 @@ parso = [
     {file = "parso-0.8.3.tar.gz", hash = "sha256:8c07be290bb59f03588915921e29e8a50002acaf2cdc5fa0e0114f91709fafa0"},
 ]
 pdbr = [
-    {file = "pdbr-0.7.3-py3-none-any.whl", hash = "sha256:4f4f051e8a72724fa9c38e7d7db943e32563d5387e37dd06ded6282fae930a07"},
-    {file = "pdbr-0.7.3.tar.gz", hash = "sha256:8005dbdc06cc0c934e0e1105d04da727699a589ff1899410e54de15ca8adc5ca"},
+    {file = "pdbr-0.7.4-py3-none-any.whl", hash = "sha256:2326743d8028138ca18aa0009e2b9bf59abda0ece0b5a71c3488ae22a10e415e"},
+    {file = "pdbr-0.7.4.tar.gz", hash = "sha256:debb26777506c140d50207197a2b8a1901e2717c6c4c19ef83553b31d14d33b2"},
 ]
 pexpect = [
     {file = "pexpect-4.8.0-py2.py3-none-any.whl", hash = "sha256:0b48a55dcb3c05f3329815901ea4fc1537514d6ba867a152b581d69ae3710937"},
@@ -528,8 +529,8 @@ pickleshare = [
     {file = "pickleshare-0.7.5.tar.gz", hash = "sha256:87683d47965c1da65cdacaf31c8441d12b8044cdec9aca500cd78fc2c683afca"},
 ]
 prompt-toolkit = [
-    {file = "prompt_toolkit-3.0.31-py3-none-any.whl", hash = "sha256:9696f386133df0fc8ca5af4895afe5d78f5fcfe5258111c2a79a1c3e41ffa96d"},
-    {file = "prompt_toolkit-3.0.31.tar.gz", hash = "sha256:9ada952c9d1787f52ff6d5f3484d0b4df8952787c087edf6a1f7c2cb1ea88148"},
+    {file = "prompt_toolkit-3.0.33-py3-none-any.whl", hash = "sha256:ced598b222f6f4029c0800cefaa6a17373fb580cd093223003475ce32805c35b"},
+    {file = "prompt_toolkit-3.0.33.tar.gz", hash = "sha256:535c29c31216c77302877d5120aef6c94ff573748a5b5ca5b1b1f76f5e700c73"},
 ]
 ptyprocess = [
     {file = "ptyprocess-0.7.0-py2.py3-none-any.whl", hash = "sha256:4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35"},
@@ -539,38 +540,37 @@ pure-eval = [
     {file = "pure_eval-0.2.2-py3-none-any.whl", hash = "sha256:01eaab343580944bc56080ebe0a674b39ec44a945e6d09ba7db3cb8cec289350"},
     {file = "pure_eval-0.2.2.tar.gz", hash = "sha256:2b45320af6dfaa1750f543d714b6d1c520a1688dec6fd24d339063ce0aaa9ac3"},
 ]
-Pygments = [
+pygments = [
     {file = "Pygments-2.13.0-py3-none-any.whl", hash = "sha256:f643f331ab57ba3c9d89212ee4a2dabc6e94f117cf4eefde99a0574720d14c42"},
     {file = "Pygments-2.13.0.tar.gz", hash = "sha256:56a8508ae95f98e2b9bdf93a6be5ae3f7d8af858b43e02c5a2ff083726be40c1"},
 ]
 pyobjc-core = [
-    {file = "pyobjc-core-8.5.1.tar.gz", hash = "sha256:f8592a12de076c27006700c4a46164478564fa33d7da41e7cbdd0a3bf9ddbccf"},
-    {file = "pyobjc_core-8.5.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:b62dcf987cc511188fc2aa5b4d3b9fd895361ea4984380463497ce4b0752ddf4"},
-    {file = "pyobjc_core-8.5.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:0accc653501a655f66c13f149a1d3d30e6cb65824edf852f7960a00c4f930d5b"},
-    {file = "pyobjc_core-8.5.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:f82b32affc898e9e5af041c1cecde2c99f2ce160b87df77f678c99f1550a4655"},
-    {file = "pyobjc_core-8.5.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:f7b2f6b6f3caeb882c658fe0c7098be2e8b79893d84daa8e636cb3e58a07df00"},
-    {file = "pyobjc_core-8.5.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:872c0202c911a5a2f1269261c168e36569f6ddac17e5d854ac19e581726570cc"},
-    {file = "pyobjc_core-8.5.1-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:21f92e231a4bae7f2d160d065f5afbf5e859a1e37f29d34ac12592205fc8c108"},
-    {file = "pyobjc_core-8.5.1-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:315334dd09781129af6a39641248891c4caa57043901750b0139c6614ce84ec0"},
+    {file = "pyobjc-core-9.0.tar.gz", hash = "sha256:3e7010c648eb94b16dd37a55f7719ed3bef6559edf4cf8fd741f46869dc223b1"},
+    {file = "pyobjc_core-9.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:548a069666ac07686ac3d987f7d006abd3e713738ec1b9dbcc9195c74cb60eae"},
+    {file = "pyobjc_core-9.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:b1eee6099b5b480cedee3803f1be75131d12509f8e0228758954df150ab15dcd"},
+    {file = "pyobjc_core-9.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:886050e8e1ff00e5502e5180df00a463b4f869d902c861ca3283b896f47d35f0"},
+    {file = "pyobjc_core-9.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:a36752bc8fcf839694e6eff85ef54f8bc3c0ba71f0f42c9aa7a47b23f3cbd137"},
+    {file = "pyobjc_core-9.0-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:1640dd25122a146162bdd1c1f46a4564606325788c5d13f1047182bb4f02cd0e"},
+    {file = "pyobjc_core-9.0-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:4296f7b11912709e5aa3d60e1cce6e1731abb7cda47fce72619804c7892b22c3"},
 ]
-pyobjc-framework-Cocoa = [
-    {file = "pyobjc-framework-Cocoa-8.5.1.tar.gz", hash = "sha256:9a3de5cdb4644e85daf53f2ed912ef6c16ea5804a9e65552eafe62c2e139eb8c"},
-    {file = "pyobjc_framework_Cocoa-8.5.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:aa572acc2628488a47be8d19f4701fc96fce7377cc4da18316e1e08c3918521a"},
-    {file = "pyobjc_framework_Cocoa-8.5.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:cb3ae21c8d81b7f02a891088c623cef61bca89bd671eff58c632d2f926b649f3"},
-    {file = "pyobjc_framework_Cocoa-8.5.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:88f08f5bd94c66d373d8413c1d08218aff4cff0b586e0cc4249b2284023e7577"},
-    {file = "pyobjc_framework_Cocoa-8.5.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:063683b57e4bd88cb0f9631ae65d25ec4eecf427d2fe8d0c578f88da9c896f3f"},
-    {file = "pyobjc_framework_Cocoa-8.5.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:8f8806ddfac40620fb27f185d0f8937e69e330617319ecc2eccf6b9c8451bdd1"},
-    {file = "pyobjc_framework_Cocoa-8.5.1-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:7733a9a201df9e0cc2a0cf7bf54d76bd7981cba9b599353b243e3e0c9eefec10"},
-    {file = "pyobjc_framework_Cocoa-8.5.1-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:f0ab227f99d3e25dd3db73f8cde0999914a5f0dd6a08600349d25f95eaa0da63"},
+pyobjc-framework-cocoa = [
+    {file = "pyobjc-framework-Cocoa-9.0.tar.gz", hash = "sha256:1a511c620e9b7ef22f2f4fa68572902cb614e66d3dbfa9e46a1a05f000f30084"},
+    {file = "pyobjc_framework_Cocoa-9.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:c36e357641f7a6ee44fd4c21bf8b72882b74c64f9489858fa35b6edfde49b6bf"},
+    {file = "pyobjc_framework_Cocoa-9.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:b1dd493665319e526a269f57052ae7acd331efb5e5f1b854ae8e1f10ad446698"},
+    {file = "pyobjc_framework_Cocoa-9.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:a4cd119626f5e8c41e790325902eed4c8d9f9d73aa9dfa90b0870d61f0c84862"},
+    {file = "pyobjc_framework_Cocoa-9.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:25d287d9fc1ed98becdcb80926e05a71b22e195d7552f504791e1200334de2ae"},
+    {file = "pyobjc_framework_Cocoa-9.0-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:6fa8e0d34e2786d7f80fd70ac4f6d9575e665e326afc4b5fffb60590344b0f98"},
+    {file = "pyobjc_framework_Cocoa-9.0-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:dc801d2a5d25bf834a78438446a9c9bd0baee6006a540fdd2f4efb5b8536ed41"},
 ]
-pyobjc-framework-ScriptingBridge = [
-    {file = "pyobjc-framework-ScriptingBridge-8.5.1.tar.gz", hash = "sha256:51b2da03b4c7d12ac814e953bfa897d1763683d4f9293f76a0ecc54745cc64d6"},
-    {file = "pyobjc_framework_ScriptingBridge-8.5.1-cp36-abi3-macosx_10_9_universal2.whl", hash = "sha256:ad3d5452a0ca8769ab5cfb47cb8ba87b9002c0be518162937d507e778cf3a634"},
-    {file = "pyobjc_framework_ScriptingBridge-8.5.1-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:25fd56eaddecd09ad75620e5f80a7befa02bb175b5c696a54d2742829f7984b2"},
-    {file = "pyobjc_framework_ScriptingBridge-8.5.1-cp36-abi3-macosx_11_0_universal2.whl", hash = "sha256:4ec4feef84502a882e55baddf11b55d5a2c1d8de8d3da908c5ef8be9c1460c9f"},
+pyobjc-framework-scriptingbridge = [
+    {file = "pyobjc-framework-ScriptingBridge-9.0.tar.gz", hash = "sha256:3197ad41da21784518547c783426c8ce1cee34e5bb5f6029c3f3c3b68aa6737e"},
+    {file = "pyobjc_framework_ScriptingBridge-9.0-cp36-abi3-macosx_10_9_universal2.whl", hash = "sha256:8d6e80eb02a0d1c17c1ea511a1b6fc7ad9c6d75e0b29c002e6a4049bf1d9214e"},
+    {file = "pyobjc_framework_ScriptingBridge-9.0-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:e389a935ec5ab061a76f002fe6994021000d6d1041d1a14387e42e353d5fc880"},
+    {file = "pyobjc_framework_ScriptingBridge-9.0-cp36-abi3-macosx_11_0_universal2.whl", hash = "sha256:d2f47d113ec258b21a436409a0fa992d75d060758f5b86842bc9cacc124f026d"},
 ]
-pyreadline = [
-    {file = "pyreadline-2.1.zip", hash = "sha256:4530592fc2e85b25b1a9f79664433da09237c1a270e4d78ea5aa3a2c7229e2d1"},
+pyreadline3 = [
+    {file = "pyreadline3-3.4.1-py3-none-any.whl", hash = "sha256:b0efb6516fd4fb07b45949053826a62fa4cb353db5be2bbb4a7aa1fdd1e345fb"},
+    {file = "pyreadline3-3.4.1.tar.gz", hash = "sha256:6f3d1f7b8a31ba32b73917cefc1f28cc660562f39aea8646d30bd6eff21f7bae"},
 ]
 python-dotenv = [
     {file = "python-dotenv-0.21.0.tar.gz", hash = "sha256:b77d08274639e3d34145dfa6c7008e66df0f04b7be7a75fd0d5292c191d79045"},
@@ -593,16 +593,16 @@ sqlparse = [
     {file = "sqlparse-0.4.3.tar.gz", hash = "sha256:69ca804846bb114d2ec380e4360a8a340db83f0ccf3afceeb1404df028f57268"},
 ]
 stack-data = [
-    {file = "stack_data-0.5.1-py3-none-any.whl", hash = "sha256:5120731a18ba4c82cefcf84a945f6f3e62319ef413bfc210e32aca3a69310ba2"},
-    {file = "stack_data-0.5.1.tar.gz", hash = "sha256:95eb784942e861a3d80efd549ff9af6cf847d88343a12eb681d7157cfcb6e32b"},
+    {file = "stack_data-0.6.1-py3-none-any.whl", hash = "sha256:960cb054d6a1b2fdd9cbd529e365b3c163e8dabf1272e02cfe36b58403cff5c6"},
+    {file = "stack_data-0.6.1.tar.gz", hash = "sha256:6c9a10eb5f342415fe085db551d673955611afb821551f554d91772415464315"},
 ]
 todoist-api-python = [
-    {file = "todoist_api_python-2.0.1-py3-none-any.whl", hash = "sha256:b6b79cc7d7b4204c42372ed887d8f116b505edbbf656365ebbf0e299c36fd6b4"},
-    {file = "todoist_api_python-2.0.1.tar.gz", hash = "sha256:156dd3842a79ca67f339250e448ee25633f552dd9ce6467710aef986e28aa57d"},
+    {file = "todoist_api_python-2.0.2-py3-none-any.whl", hash = "sha256:af52cbc8f183dff79d22929dbab75e1d840da3e10e0571e8ff84e8fc74d6fcf8"},
+    {file = "todoist_api_python-2.0.2.tar.gz", hash = "sha256:ec8567649e35c244a44608b5e0c125aabf9e567c0f2df55959af39024a856e25"},
 ]
 traitlets = [
-    {file = "traitlets-5.4.0-py3-none-any.whl", hash = "sha256:93663cc8236093d48150e2af5e2ed30fc7904a11a6195e21bab0408af4e6d6c8"},
-    {file = "traitlets-5.4.0.tar.gz", hash = "sha256:3f2c4e435e271592fe4390f1746ea56836e3a080f84e7833f0f801d9613fec39"},
+    {file = "traitlets-5.5.0-py3-none-any.whl", hash = "sha256:1201b2c9f76097195989cdf7f65db9897593b0dfd69e4ac96016661bb6f0d30f"},
+    {file = "traitlets-5.5.0.tar.gz", hash = "sha256:b122f9ff2f2f6c1709dab289a05555be011c87828e911c0cf4074b85cb780a79"},
 ]
 urllib3 = [
     {file = "urllib3-1.26.12-py2.py3-none-any.whl", hash = "sha256:b930dd878d5a8afb066a637fbb35144fe7901e3b209d1cd4f524bd0e9deee997"},
