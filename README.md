@@ -19,8 +19,8 @@ clean-workspace
 
 ## Usage
 
-* Add your todoist token to `.envrc` and `direnv allow .`
-* Customize the url and domain blacklist
+- Add your todoist token to `.envrc` and `direnv allow .`
+- Customize the url and domain blacklist
 
 ### Collecting Tab Description Via AppleScript
 
@@ -37,5 +37,5 @@ EOT
 
 ## Inspiration
 
-* https://gist.github.com/aleks-mariusz/cc27b21f2c5b91fbd285
-* https://github.com/tominsam/shelf-python/blob/f357d9b147fa651034b71501edabf65f59d5befa/extractors/ComAppleSafari.py#L11
+- https://gist.github.com/aleks-mariusz/cc27b21f2c5b91fbd285
+- https://github.com/tominsam/shelf-python/blob/f357d9b147fa651034b71501edabf65f59d5befa/extractors/ComAppleSafari.py#L11
