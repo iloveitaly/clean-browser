@@ -285,7 +285,7 @@ plugins = ["importlib-metadata"]
 
 [[package]]
 name = "pyobjc-core"
-version = "9.0"
+version = "9.0.1"
 description = "Python<->ObjC Interoperability Module"
 category = "main"
 optional = false
@@ -293,26 +293,26 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "pyobjc-framework-cocoa"
-version = "9.0"
+version = "9.0.1"
 description = "Wrappers for the Cocoa frameworks on macOS"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-pyobjc-core = ">=9.0"
+pyobjc-core = ">=9.0.1"
 
 [[package]]
 name = "pyobjc-framework-scriptingbridge"
-version = "9.0"
+version = "9.0.1"
 description = "Wrappers for the framework ScriptingBridge on macOS"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-pyobjc-core = ">=9.0"
-pyobjc-framework-Cocoa = ">=9.0"
+pyobjc-core = ">=9.0.1"
+pyobjc-framework-Cocoa = ">=9.0.1"
 
 [[package]]
 name = "pyreadline3"
@@ -446,7 +446,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "d1ceb7476461cc8b61640b1c581784cd01ec1c351698762d0de62ed49200f7ab"
+content-hash = "0e4144ea96280206d04b2966e0257eed23d9dad180899d28fed98471ef55756d"
 
 [metadata.files]
 appnope = [
@@ -545,28 +545,28 @@ pygments = [
     {file = "Pygments-2.13.0.tar.gz", hash = "sha256:56a8508ae95f98e2b9bdf93a6be5ae3f7d8af858b43e02c5a2ff083726be40c1"},
 ]
 pyobjc-core = [
-    {file = "pyobjc-core-9.0.tar.gz", hash = "sha256:3e7010c648eb94b16dd37a55f7719ed3bef6559edf4cf8fd741f46869dc223b1"},
-    {file = "pyobjc_core-9.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:548a069666ac07686ac3d987f7d006abd3e713738ec1b9dbcc9195c74cb60eae"},
-    {file = "pyobjc_core-9.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:b1eee6099b5b480cedee3803f1be75131d12509f8e0228758954df150ab15dcd"},
-    {file = "pyobjc_core-9.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:886050e8e1ff00e5502e5180df00a463b4f869d902c861ca3283b896f47d35f0"},
-    {file = "pyobjc_core-9.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:a36752bc8fcf839694e6eff85ef54f8bc3c0ba71f0f42c9aa7a47b23f3cbd137"},
-    {file = "pyobjc_core-9.0-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:1640dd25122a146162bdd1c1f46a4564606325788c5d13f1047182bb4f02cd0e"},
-    {file = "pyobjc_core-9.0-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:4296f7b11912709e5aa3d60e1cce6e1731abb7cda47fce72619804c7892b22c3"},
+    {file = "pyobjc-core-9.0.1.tar.gz", hash = "sha256:5ce1510bb0bdff527c597079a42b2e13a19b7592e76850be7960a2775b59c929"},
+    {file = "pyobjc_core-9.0.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:b614406d46175b1438a9596b664bf61952323116704d19bc1dea68052a0aad98"},
+    {file = "pyobjc_core-9.0.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:bd397e729f6271c694fb70df8f5d3d3c9b2f2b8ac02fbbdd1757ca96027b94bb"},
+    {file = "pyobjc_core-9.0.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:d919934eaa6d1cf1505ff447a5c2312be4c5651efcb694eb9f59e86f5bd25e6b"},
+    {file = "pyobjc_core-9.0.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:67d67ca8b164f38ceacce28a18025845c3ec69613f3301935d4d2c4ceb22e3fd"},
+    {file = "pyobjc_core-9.0.1-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:39d11d71f6161ac0bd93cffc8ea210bb0178b56d16a7408bf74283d6ecfa7430"},
+    {file = "pyobjc_core-9.0.1-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:25be1c4d530e473ed98b15063b8d6844f0733c98914de6f09fe1f7652b772bbc"},
 ]
 pyobjc-framework-cocoa = [
-    {file = "pyobjc-framework-Cocoa-9.0.tar.gz", hash = "sha256:1a511c620e9b7ef22f2f4fa68572902cb614e66d3dbfa9e46a1a05f000f30084"},
-    {file = "pyobjc_framework_Cocoa-9.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:c36e357641f7a6ee44fd4c21bf8b72882b74c64f9489858fa35b6edfde49b6bf"},
-    {file = "pyobjc_framework_Cocoa-9.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:b1dd493665319e526a269f57052ae7acd331efb5e5f1b854ae8e1f10ad446698"},
-    {file = "pyobjc_framework_Cocoa-9.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:a4cd119626f5e8c41e790325902eed4c8d9f9d73aa9dfa90b0870d61f0c84862"},
-    {file = "pyobjc_framework_Cocoa-9.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:25d287d9fc1ed98becdcb80926e05a71b22e195d7552f504791e1200334de2ae"},
-    {file = "pyobjc_framework_Cocoa-9.0-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:6fa8e0d34e2786d7f80fd70ac4f6d9575e665e326afc4b5fffb60590344b0f98"},
-    {file = "pyobjc_framework_Cocoa-9.0-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:dc801d2a5d25bf834a78438446a9c9bd0baee6006a540fdd2f4efb5b8536ed41"},
+    {file = "pyobjc-framework-Cocoa-9.0.1.tar.gz", hash = "sha256:a8b53b3426f94307a58e2f8214dc1094c19afa9dcb96f21be12f937d968b2df3"},
+    {file = "pyobjc_framework_Cocoa-9.0.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:5f94b0f92a62b781e633e58f09bcaded63d612f9b1e15202f5f372ea59e4aebd"},
+    {file = "pyobjc_framework_Cocoa-9.0.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:f062c3bb5cc89902e6d164aa9a66ffc03638645dd5f0468b6f525ac997c86e51"},
+    {file = "pyobjc_framework_Cocoa-9.0.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:0b374c0a9d32ba4fc5610ab2741cb05a005f1dfb82a47dbf2dbb2b3a34b73ce5"},
+    {file = "pyobjc_framework_Cocoa-9.0.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:8928080cebbce91ac139e460d3dfc94c7cb6935be032dcae9c0a51b247f9c2d9"},
+    {file = "pyobjc_framework_Cocoa-9.0.1-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:9d2bd86a0a98d906f762f5dc59f2fc67cce32ae9633b02ff59ac8c8a33dd862d"},
+    {file = "pyobjc_framework_Cocoa-9.0.1-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:2a41053cbcee30e1e8914efa749c50b70bf782527d5938f2bc2a6393740969ce"},
 ]
 pyobjc-framework-scriptingbridge = [
-    {file = "pyobjc-framework-ScriptingBridge-9.0.tar.gz", hash = "sha256:3197ad41da21784518547c783426c8ce1cee34e5bb5f6029c3f3c3b68aa6737e"},
-    {file = "pyobjc_framework_ScriptingBridge-9.0-cp36-abi3-macosx_10_9_universal2.whl", hash = "sha256:8d6e80eb02a0d1c17c1ea511a1b6fc7ad9c6d75e0b29c002e6a4049bf1d9214e"},
-    {file = "pyobjc_framework_ScriptingBridge-9.0-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:e389a935ec5ab061a76f002fe6994021000d6d1041d1a14387e42e353d5fc880"},
-    {file = "pyobjc_framework_ScriptingBridge-9.0-cp36-abi3-macosx_11_0_universal2.whl", hash = "sha256:d2f47d113ec258b21a436409a0fa992d75d060758f5b86842bc9cacc124f026d"},
+    {file = "pyobjc-framework-ScriptingBridge-9.0.1.tar.gz", hash = "sha256:2ae301056dfe2e6d338da2523d29a08a4b0edb0bf547efa94e283b2022a8e5d8"},
+    {file = "pyobjc_framework_ScriptingBridge-9.0.1-cp36-abi3-macosx_10_9_universal2.whl", hash = "sha256:bee5273baf962cb7ba754a2e859d4d719489c482c7b7db2cad76b318ce6ab42c"},
+    {file = "pyobjc_framework_ScriptingBridge-9.0.1-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:3e1d3c9160fdad19f1390a85e10f4e2d79b71371bd2d4eca22243e10cf2373c7"},
+    {file = "pyobjc_framework_ScriptingBridge-9.0.1-cp36-abi3-macosx_11_0_universal2.whl", hash = "sha256:60343aaa89421b8ca3cff7d3da802e9b852a41ab0e787358d4a6db3df548747e"},
 ]
 pyreadline3 = [
     {file = "pyreadline3-3.4.1-py3-none-any.whl", hash = "sha256:b0efb6516fd4fb07b45949053826a62fa4cb353db5be2bbb4a7aa1fdd1e345fb"},
