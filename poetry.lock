@@ -287,21 +287,21 @@ testing = ["docopt", "pytest (<6.0.0)"]
 
 [[package]]
 name = "pdbr"
-version = "0.7.4"
+version = "0.7.6"
 description = "Pdb with Rich library."
 category = "dev"
 optional = false
 python-versions = ">=3.7.9,<4.0.0"
 files = [
-    {file = "pdbr-0.7.4-py3-none-any.whl", hash = "sha256:2326743d8028138ca18aa0009e2b9bf59abda0ece0b5a71c3488ae22a10e415e"},
-    {file = "pdbr-0.7.4.tar.gz", hash = "sha256:debb26777506c140d50207197a2b8a1901e2717c6c4c19ef83553b31d14d33b2"},
+    {file = "pdbr-0.7.6-py3-none-any.whl", hash = "sha256:3e54d035405f0178bdbda01e1c4aef8b3bd6781808299551d2a9c7bc114dfc64"},
+    {file = "pdbr-0.7.6.tar.gz", hash = "sha256:9fa21fa7a2fb936af60994fecea7cb76cf9ac8139dedf7ad1fd3e20c4ea78f18"},
 ]
 
 [package.dependencies]
-icecream = ">=2.1.0,<3.0.0"
+icecream = "*"
 pyreadline3 = {version = ">=3.4.1,<4.0.0", markers = "sys_platform == \"win32\""}
-rich = ">=12.0.0,<13.0.0"
-sqlparse = ">=0.4.2,<0.5.0"
+rich = "*"
+sqlparse = "*"
 
 [package.extras]
 celery = ["celery (>=5.2.2,<6.0.0)"]
@@ -622,4 +622,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "54efd2dd8cff1cd7fd2ae19ffd3e431974fcd313dc17c1661843e7b824e14c3b"
+content-hash = "c8702c511c4759f5a1053a3e65609f93f1ce4cc7f2099e78faaf689a054688fc"
