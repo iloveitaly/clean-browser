@@ -5,8 +5,7 @@ get distracted by open tabs on my browser, especially if I'm trying to write or 
 my full attention to. I've found that if I close all my tabs, I can focus better on the task at hand. However, I don't
 want to lose any interesting tabs so I never actually do that.
 
-This is simple utility to automate this process. It will close all your tabs, and send them to [todoist](https://mikebian.co/todoist) (and output)
-them to the terminal.
+This is simple utility to automate this process. It will close all your tabs (in both Safari & Chrome), and send them to [todoist](https://mikebian.co/todoist) (and output) them to the terminal.
 
 We'll see if this actually helps!
 
