@@ -287,14 +287,14 @@ testing = ["docopt", "pytest (<6.0.0)"]
 
 [[package]]
 name = "pdbr"
-version = "0.7.9"
+version = "0.8.2"
 description = "Pdb with Rich library."
 category = "dev"
 optional = false
 python-versions = ">=3.7.9,<4.0.0"
 files = [
-    {file = "pdbr-0.7.9-py3-none-any.whl", hash = "sha256:ff95aee8aac963b16c18408563939a8138c1303b5215d5e61055f57387be62e5"},
-    {file = "pdbr-0.7.9.tar.gz", hash = "sha256:24c9d37bc44ddaff402b3686af5dce0db3466233892882fb7a719463c6caab84"},
+    {file = "pdbr-0.8.2-py3-none-any.whl", hash = "sha256:0667c3c852e0c5a952bbef63d8ad37e950914105b215b55f3d9bcbc87b67d9c3"},
+    {file = "pdbr-0.8.2.tar.gz", hash = "sha256:1c427a6175f1603394a0fc896a5887aa57b871a0ac06b47df6f585f542dc9e12"},
 ]
 
 [package.dependencies]
@@ -622,4 +622,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "e87011b9a07fcd74070a4291d2c4b9943df0fff99cc3d119525b6e4c19aa71b8"
+content-hash = "5559afa49a0b50a20fbc66017298a4934d6e9130a4249773c9db4f3341f129ac"
