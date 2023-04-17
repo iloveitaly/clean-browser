@@ -108,6 +108,10 @@ def get_bookmarks_urls() -> t.List[str]:
 
     return [bookmark.split("#")[0] for bookmark in raw_bookmark_urls]
 
+def quit_browsers():
+    os.system("osascript -e 'quit app \"Safari\"'")
+    os.system("osascript -e 'quit app \"Chrome\"'")
+
 def main():
     # TODO maybe optionally collect via applescript input dialog? We'd need to develop a proper interface for the CLI at that point.
     # get first CLI argument if it exists
@@ -168,13 +172,13 @@ def main():
 
     if not todoist_content.strip():
         print("no urls to add, exiting")
+        quit_browsers()
         sys.exit()
 
     print(f"\n{todoist_content}\n")
 
     # since we've archived all content we can now close out Safari & Chrome
-    os.system("osascript -e 'quit app \"Safari\"'")
-    os.system("osascript -e 'quit app \"Chrome\"'")
+    quit_browsers()
 
     export_to_todoist(todoist_content, tab_description)
 
