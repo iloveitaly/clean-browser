@@ -14,7 +14,7 @@ python-dotenv = "^1.0.0"
 chrome-bookmarks = "^2020.10.25"
 
 [tool.poetry.group.dev.dependencies]
-ipython = "^8.12.0"
+ipython = "^8.13.1"
 ipython-autoimport = "^0.4"
 pdbr = "^0.8.2"
 
