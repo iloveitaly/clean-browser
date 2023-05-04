@@ -61,7 +61,8 @@ def export_to_todoist(task_content, description):
             description, datetime.datetime.now().strftime("%Y-%m-%d")
         ),
         description=task_content,
-        due_string="today",
+        # date is serialized in the task description, no need for a due date
+        due_string="no date",
         labels=[label_name],
         project_id=project.id if project else None,
     )
