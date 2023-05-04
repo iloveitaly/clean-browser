@@ -114,6 +114,10 @@ def quit_browsers():
     os.system("osascript -e 'quit app \"Chrome\"'")
 
 def main():
+    if not is_internet_connected():
+        print("internet is not connected")
+        return
+
     # TODO maybe optionally collect via applescript input dialog? We'd need to develop a proper interface for the CLI at that point.
     # get first CLI argument if it exists
     if len(sys.argv) > 1 and sys.argv[1].strip():
@@ -182,6 +186,14 @@ def main():
     quit_browsers()
 
     export_to_todoist(todoist_content, tab_description)
+
+def is_internet_connected():
+    import socket
+    s = socket.socket(socket.AF_INET)
+    try:
+        s.connect(("google.com",80))
+        return True
+    except socket.error as e: return False
 
 if __name__ == "__main__":
     main()
