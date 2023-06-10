@@ -1,0 +1,34 @@
+name: Build and Publish to PyPI
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: $(grep -o '^python.*' .tool-versions | grep -o "[0-9.]\+")
+
+      - name: Install Poetry
+        uses: shivammathur/setup-poetry@v1
+        with:
+          version: $(grep -o '^poetry.*' .tool-versions | grep -o "[0-9.]\+")
+
+      - name: Install dependencies
+        run: |
+          poetry install
+
+      - name: Build distribution package
+        run: |
+          poetry build
+
+      - name: Publish to PyPI
+        run: |
+          poetry publish -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
