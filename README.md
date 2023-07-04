@@ -13,7 +13,7 @@ We'll see if this actually helps!
 
 ```shell
 poetry install
-clean-workspace
+poetry run clean-workspace
 ```
 
 ## Usage

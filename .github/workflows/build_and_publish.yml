@@ -1,3 +1,5 @@
+# .github/workflows/build_and_publish.yml
+
 name: Build and Publish to PyPI
 on:
   push:
@@ -11,15 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: ASDF Parse
+        uses: kota65535/github-asdf-parse-action@v1.1.0
+        id: versions
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: $(grep -o '^python.*' .tool-versions | grep -o "[0-9.]\+")
+          python-version: "${{ steps.versions.outputs.python }}"
 
       - name: Install Poetry
-        uses: shivammathur/setup-poetry@v1
+        uses: Gr1N/setup-poetry@v8
         with:
-          version: $(grep -o '^poetry.*' .tool-versions | grep -o "[0-9.]\+")
+          poetry-version: "${{ steps.versions.outputs.poetry }}"
 
       - name: Install dependencies
         run: |
@@ -31,4 +37,5 @@ jobs:
 
       - name: Publish to PyPI
         run: |
+          # `gh secret set PYPI_API_TOKEN --app actions --body $PYPI_API_TOKEN`
           poetry publish -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
