@@ -31,6 +31,21 @@ jobs:
         run: |
           poetry install
 
+      - name: Make sure it runs
+        run: |
+          poetry run clean-workspace --help
+
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.github_token}}
+          version-file: './pyproject.toml'
+          version-path: 'tool.poetry.version'
+          fallback-version: "1.0.0"
+          output-file: 'CHANGELOG.md'
+
+      # NOTE must run after versioning otherwise the right version won't be pushed
       - name: Build distribution package
         run: |
           poetry build
