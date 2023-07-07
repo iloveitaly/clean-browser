@@ -2,9 +2,11 @@ import os
 import plistlib
 import sys
 import typing as t
+import click
 
-from ScriptingBridge import SBApplication
 import chrome_bookmarks
+from ScriptingBridge import SBApplication
+
 
 def todoist_client():
     # extract todoist api key from environment without throwing an exception
@@ -21,9 +23,11 @@ def todoist_client():
     api = TodoistAPI(todoist_api_key)
     return api
 
+
 def export_to_todoist(task_content, description):
     # TODO should also support .env here as well
     import dotenv
+
     dotenv.load_dotenv(".envrc")
 
     api = todoist_client()
@@ -39,7 +43,6 @@ def export_to_todoist(task_content, description):
 
     if len(project_matches) == 1:
         project = project_matches[0]
-
 
     # find a label called "web-archive" or create it
     label_name = os.environ.get("TODOIST_LABEL", "web-archive")
@@ -67,6 +70,7 @@ def export_to_todoist(task_content, description):
         project_id=project.id if project else None,
     )
 
+
 def get_browser_urls() -> t.List[str]:
     browser_urls = []
     chrome = SBApplication.applicationWithBundleIdentifier_("com.google.Chrome")
@@ -84,6 +88,7 @@ def get_browser_urls() -> t.List[str]:
             # instead we just close out the whole application below
 
     return browser_urls
+
 
 def get_bookmarks_urls() -> t.List[str]:
     raw_bookmark_urls = [bookmark.url for bookmark in chrome_bookmarks.urls]
@@ -103,28 +108,20 @@ def get_bookmarks_urls() -> t.List[str]:
             if child["Title"] == "BookmarksBar"
         ][0]["Children"]
 
-        raw_safari_bookmark_urls = [bookmark["URLString"] for bookmark in safari_bookmarks]
+        raw_safari_bookmark_urls = [
+            bookmark["URLString"] for bookmark in safari_bookmarks
+        ]
 
         raw_bookmark_urls.extend(raw_safari_bookmark_urls)
 
     return [bookmark.split("#")[0] for bookmark in raw_bookmark_urls]
 
+
 def quit_browsers():
     os.system("osascript -e 'quit app \"Safari\"'")
     os.system("osascript -e 'quit app \"Chrome\"'")
 
-def main():
-    if not is_internet_connected():
-        print("internet is not connected")
-        return
-
-    # TODO maybe optionally collect via applescript input dialog? We'd need to develop a proper interface for the CLI at that point.
-    # get first CLI argument if it exists
-    if len(sys.argv) > 1 and sys.argv[1].strip():
-        tab_description = sys.argv[1].strip() + " "
-    else:
-        tab_description = ""
-
+def clean_workspace(tab_description, blacklist_domains, blacklist_urls):
     browser_urls = get_browser_urls()
 
     # if page is blank, there is no url or string does not contain http
@@ -143,21 +140,20 @@ def main():
 
     # user configurable blacklist for urls you don't want to archive
     url_blacklist = []
-    with open("blacklist_urls.txt", "r") as f:
+    with open(blacklist_urls, "r") as f:
         url_blacklist = f.read().splitlines()
 
     domain_blacklist = []
-    with open("blacklist_domains.txt", "r") as f:
+    with open(blacklist_domains, "r") as f:
         domain_blacklist = f.read().splitlines()
         # add a `www.` prefix to each domain in the blacklist and merge it with the existing list
-        domain_blacklist = domain_blacklist + [
-            "www." + domain for domain in domain_blacklist
-        ]
+        domain_blacklist = domain_blacklist + ["www." + domain for domain in domain_blacklist]
 
     bookmark_urls = get_bookmarks_urls()
 
     # TODO output skipped domains
     # TODO support wildcard subdomains, *.sentry.io
+
     # filter all urls with blacklisted domains
     browser_urls = [x for x in browser_urls if x[0].split("/")[2] not in domain_blacklist]
 
@@ -187,13 +183,45 @@ def main():
 
     export_to_todoist(todoist_content, tab_description)
 
+
+@click.command()
+@click.option('--blacklist-domains', type=click.Path(), default=None)
+@click.option('--blacklist-urls', type=click.Path(), default=None)
+@click.option('--tab-description', default='', help='Description for tab')
+def main(tab_description, blacklist_domains, blacklist_urls):
+    if not is_internet_connected():
+        print("internet is not connected")
+        return
+
+    home_dir = os.path.expanduser("~")
+
+    if blacklist_domains is None:
+        default_domains_path = os.path.join(home_dir, '.config', 'clean-workspace', 'blacklist_domains.txt')
+        blacklist_domains = default_domains_path if os.path.exists(default_domains_path) else 'blacklist_domains.txt'
+
+    if blacklist_urls is None:
+        default_urls_path = os.path.join(home_dir, '.config', 'clean-workspace', 'blacklist_urls.txt')
+        blacklist_urls = default_urls_path if os.path.exists(default_urls_path) else 'blacklist_urls.txt'
+
+    clean_workspace(tab_description, blacklist_domains, blacklist_urls)
+
+
+def archive_old_tasks():
+    # find all old tasks (>1mo) and archive them
+    # optionally only do this when there is not a custom name in the title
+    pass
+
+
 def is_internet_connected():
     import socket
+
     s = socket.socket(socket.AF_INET)
     try:
-        s.connect(("google.com",80))
+        s.connect(("google.com", 80))
         return True
-    except socket.error as e: return False
+    except socket.error as e:
+        return False
+
 
 if __name__ == "__main__":
     main()
