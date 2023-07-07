@@ -12,6 +12,13 @@ We'll see if this actually helps!
 ## Installation
 
 ```shell
+pip install clean-workspace
+clean-workspace
+```
+
+## Development
+
+```shell
 poetry install
 poetry run clean-workspace
 ```
