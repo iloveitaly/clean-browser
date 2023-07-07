@@ -53,12 +53,12 @@ def export_to_todoist(task_content, description):
     if len(label_matches) == 0:
         # https://developer.todoist.com/rest/v1/#create-a-new-label
         print(f"could not find {label_name} label, creating it")
-        label = api.add_label(name=label_name)
+        api.add_label(name=label_name)
     else:
-        label = label_matches[0]
+        label_matches[0]
 
     # https://developer.todoist.com/rest/v2#create-a-new-task
-    response = api.add_task(
+    api.add_task(
         # set content to "web archive CURRENT_DAY" using format YYYY-MM-DD
         content="{}web archive {}".format(
             description, datetime.datetime.now().strftime("%Y-%m-%d")
@@ -121,6 +121,7 @@ def quit_browsers():
     os.system("osascript -e 'quit app \"Safari\"'")
     os.system("osascript -e 'quit app \"Chrome\"'")
 
+
 def clean_workspace(tab_description, blacklist_domains, blacklist_urls):
     browser_urls = get_browser_urls()
 
@@ -147,7 +148,9 @@ def clean_workspace(tab_description, blacklist_domains, blacklist_urls):
     with open(blacklist_domains, "r") as f:
         domain_blacklist = f.read().splitlines()
         # add a `www.` prefix to each domain in the blacklist and merge it with the existing list
-        domain_blacklist = domain_blacklist + ["www." + domain for domain in domain_blacklist]
+        domain_blacklist = domain_blacklist + [
+            "www." + domain for domain in domain_blacklist
+        ]
 
     bookmark_urls = get_bookmarks_urls()
 
@@ -155,7 +158,9 @@ def clean_workspace(tab_description, blacklist_domains, blacklist_urls):
     # TODO support wildcard subdomains, *.sentry.io
 
     # filter all urls with blacklisted domains
-    browser_urls = [x for x in browser_urls if x[0].split("/")[2] not in domain_blacklist]
+    browser_urls = [
+        x for x in browser_urls if x[0].split("/")[2] not in domain_blacklist
+    ]
 
     # join url and name with "-" and print to stdout
     todoist_content = ""
@@ -185,9 +190,9 @@ def clean_workspace(tab_description, blacklist_domains, blacklist_urls):
 
 
 @click.command()
-@click.option('--blacklist-domains', type=click.Path(), default=None)
-@click.option('--blacklist-urls', type=click.Path(), default=None)
-@click.option('--tab-description', default='', help='Description for tab')
+@click.option("--blacklist-domains", type=click.Path(), default=None)
+@click.option("--blacklist-urls", type=click.Path(), default=None)
+@click.option("--tab-description", default="", help="Description for tab")
 def main(tab_description, blacklist_domains, blacklist_urls):
     if not is_internet_connected():
         print("internet is not connected")
@@ -196,12 +201,24 @@ def main(tab_description, blacklist_domains, blacklist_urls):
     home_dir = os.path.expanduser("~")
 
     if blacklist_domains is None:
-        default_domains_path = os.path.join(home_dir, '.config', 'clean-workspace', 'blacklist_domains.txt')
-        blacklist_domains = default_domains_path if os.path.exists(default_domains_path) else 'blacklist_domains.txt'
+        default_domains_path = os.path.join(
+            home_dir, ".config", "clean-workspace", "blacklist_domains.txt"
+        )
+        blacklist_domains = (
+            default_domains_path
+            if os.path.exists(default_domains_path)
+            else "blacklist_domains.txt"
+        )
 
     if blacklist_urls is None:
-        default_urls_path = os.path.join(home_dir, '.config', 'clean-workspace', 'blacklist_urls.txt')
-        blacklist_urls = default_urls_path if os.path.exists(default_urls_path) else 'blacklist_urls.txt'
+        default_urls_path = os.path.join(
+            home_dir, ".config", "clean-workspace", "blacklist_urls.txt"
+        )
+        blacklist_urls = (
+            default_urls_path
+            if os.path.exists(default_urls_path)
+            else "blacklist_urls.txt"
+        )
 
     clean_workspace(tab_description, blacklist_domains, blacklist_urls)
 
@@ -219,7 +236,7 @@ def is_internet_connected():
     try:
         s.connect(("google.com", 80))
         return True
-    except socket.error as e:
+    except socket.error:
         return False
 
 
