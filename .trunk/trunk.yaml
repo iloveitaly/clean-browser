@@ -8,7 +8,6 @@ plugins:
       uri: https://github.com/trunk-io/plugins
 lint:
   enabled:
-    - bandit@1.7.5
     - checkov@2.3.314
     - osv-scanner@1.3.4
     - trivy@0.43.0
@@ -22,6 +21,7 @@ lint:
     - black@23.3.0
     - gitleaks@8.17.0
   disabled:
+    - bandit@1.7.5
     - prettier@3.0.0
     - flake8@6.0.0
     - isort@5.12.0
