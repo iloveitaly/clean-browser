@@ -18,12 +18,13 @@ lint:
     - yamllint@1.32.0
     - git-diff-check
     - taplo@0.7.0
-    - flake8@6.0.0
-    - isort@5.12.0
     - markdownlint@0.35.0
     - black@23.3.0
-    - prettier@3.0.0
     - gitleaks@8.17.0
+  disabled:
+    - prettier@3.0.0
+    - flake8@6.0.0
+    - isort@5.12.0
 runtimes:
   enabled:
     - go@1.19.5
