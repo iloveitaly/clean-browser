@@ -13,6 +13,7 @@ pyobjc-framework-ScriptingBridge = "^9.0.1"
 todoist-api-python = "^2.0.1"
 python-dotenv = "^1.0.0"
 chrome-bookmarks = "^2020.10.25"
+click = "^8.1.4"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.14.0"
