@@ -1,4 +1,0 @@
-- [ ] install bin https://dev.to/bowmanjd/build-command-line-tools-with-python-poetry-4mnc
-- [ ] pull config from ~/.config/clean-workspace/*, then from the local folder
-- [ ] move blacklist files into example area of repo
-- [ ] https://www.brainsorting.com/posts/publish-a-package-on-pypi-using-poetry/
