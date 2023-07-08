@@ -28,6 +28,17 @@ poetry run clean-workspace
 - Add your todoist token to `.envrc` and `direnv allow .`
 - Customize the url and domain blacklist
 
+```shell
+❯ clean-workspace --help
+Usage: clean-workspace [OPTIONS]
+
+Options:
+  --blacklist-domains PATH
+  --blacklist-urls PATH
+  --tab-description TEXT    Description for tab
+  --help                    Show this message and exit.
+```
+
 ### Collecting Tab Description Via AppleScript
 
 Here's a quick script you can use to collect a description of what you were working on via applescript:
