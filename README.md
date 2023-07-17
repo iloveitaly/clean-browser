@@ -63,3 +63,5 @@ Here's a [full example](https://github.com/iloveitaly/dotfiles/blob/648010ec9a9c
 
 - [ ] Indicate in python config that this is macOS only in poetry config?
 - [ ] move blacklist files into example area of repo
+- [ ] look at previous tasks and see if links are contained there before including them again
+- [ ] support google chrome canary
