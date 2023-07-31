@@ -1,4 +1,13 @@
-# 0.2.0 (2023-07-07)
+# [0.3.0](https://github.com/iloveitaly/clean-browser/compare/v0.2.0...v0.3.0) (2023-07-31)
+
+
+### Features
+
+* regex support ([78e7525](https://github.com/iloveitaly/clean-browser/commit/78e7525aaf7ec2fd0137ace4739c771b54174aa5))
+
+
+
+# [0.2.0](https://github.com/iloveitaly/clean-browser/compare/bd60d19647edc6c2ca1e0855c778a6e8fa49553d...v0.2.0) (2023-07-07)
 
 
 ### Bug Fixes
