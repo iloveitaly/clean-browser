@@ -122,6 +122,10 @@ def quit_browsers():
     os.system("osascript -e 'quit app \"Chrome\"'")
 
 
+# the syntax we use is starting and ending with `/`, like sed
+def _is_regex_entry(entry: str):
+    return entry.startswith("/") and entry.endswith("/")
+
 def clean_workspace(tab_description, blacklist_domains_file_path, blacklist_urls_file_path):
     browser_urls = get_browser_urls()
 
@@ -147,9 +151,10 @@ def clean_workspace(tab_description, blacklist_domains_file_path, blacklist_urls
     domain_blacklist = []
     with open(blacklist_domains_file_path, "r") as f:
         domain_blacklist = f.read().splitlines()
+
         # add a `www.` prefix to each domain in the blacklist and merge it with the existing list
         domain_blacklist = domain_blacklist + [
-            "www." + domain for domain in domain_blacklist
+            "www." + domain for domain in domain_blacklist if not _is_regex_entry(domain)
         ]
 
     bookmark_urls = get_bookmarks_urls()
