@@ -1,11 +1,12 @@
 [tool.poetry]
 name = "clean-workspace"
 version = "0.3.0"
-description = "Collect all browser URLs, output to terminal, and archive to todoist"
+description = "Collect all browser URLs, output to terminal, and archive to todoist. Useful for cleaning up your workspace at the end of the day, without loosing important urls."
 authors = ["Michael Bianco <mike@mikebian.co>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/iloveitaly/clean-workspace"
+# keywords = ["todoist", "browser", "urls", "clean", "workspace"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
