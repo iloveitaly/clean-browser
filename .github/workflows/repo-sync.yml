@@ -17,5 +17,4 @@ jobs:
         # uses: kbrashears5/github-action-repo-sync@v1.0.0
         uses: iloveitaly/github-action-repo-sync@python
         with:
-          PATH: pyproject.toml
           TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
