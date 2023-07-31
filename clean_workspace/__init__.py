@@ -2,9 +2,9 @@ import os
 import plistlib
 import sys
 import typing as t
-import click
 
 import chrome_bookmarks
+import click
 from ScriptingBridge import SBApplication
 
 
