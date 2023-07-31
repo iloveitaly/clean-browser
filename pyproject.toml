@@ -6,7 +6,7 @@ authors = ["Mike Bianco <mike@mikebian.co>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/iloveitaly/clean-workspace"
-keywords = ["todoist", "browser", "urls", "clean", "workspace"]
+keywords = ["todoist", "browser", "productivity"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
