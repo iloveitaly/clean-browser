@@ -122,7 +122,7 @@ def quit_browsers():
     os.system("osascript -e 'quit app \"Chrome\"'")
 
 
-def clean_workspace(tab_description, blacklist_domains, blacklist_urls):
+def clean_workspace(tab_description, blacklist_domains_file_path, blacklist_urls_file_path):
     browser_urls = get_browser_urls()
 
     # if page is blank, there is no url or string does not contain http
@@ -141,11 +141,11 @@ def clean_workspace(tab_description, blacklist_domains, blacklist_urls):
 
     # user configurable blacklist for urls you don't want to archive
     url_blacklist = []
-    with open(blacklist_urls, "r") as f:
+    with open(blacklist_urls_file_path, "r") as f:
         url_blacklist = f.read().splitlines()
 
     domain_blacklist = []
-    with open(blacklist_domains, "r") as f:
+    with open(blacklist_domains_file_path, "r") as f:
         domain_blacklist = f.read().splitlines()
         # add a `www.` prefix to each domain in the blacklist and merge it with the existing list
         domain_blacklist = domain_blacklist + [
