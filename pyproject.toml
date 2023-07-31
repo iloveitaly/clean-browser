@@ -2,7 +2,7 @@
 name = "clean-workspace"
 version = "0.3.0"
 description = "Collect all browser URLs, output to terminal, and archive to todoist. Useful for cleaning up your workspace at the end of the day, without loosing important urls."
-authors = ["Michael Bianco <mike@mikebian.co>"]
+authors = ["Mike Bianco <mike@mikebian.co>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/iloveitaly/clean-workspace"
