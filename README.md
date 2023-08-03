@@ -39,6 +39,16 @@ Options:
   --help                    Show this message and exit.
 ```
 
+### Regex Entries
+
+You can use regex matches in both the url and domain blacklist files. For example, if you want to blacklist all Zoom domains, you can use the following:
+
+```shell
+echo "/.*zoom\.us/" >> ~/.config/clean-workspace/blacklist-domains.txt
+```
+
+A regex entry starts & ends with `/`, like `sed`.
+
 ### Collecting Tab Description Via AppleScript
 
 Here's a quick script you can use to collect a description of what you were working on via applescript:
