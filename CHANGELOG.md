@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/iloveitaly/clean-browser/compare/v0.3.0...v0.4.0) (2023-08-03)
+
+
+### Features
+
+* support regex entries on url blacklist and domain blacklist ([8b18b02](https://github.com/iloveitaly/clean-browser/commit/8b18b0294e4fa161bee65737454dcbf934053d18))
+
+
+
 # [0.3.0](https://github.com/iloveitaly/clean-browser/compare/v0.2.0...v0.3.0) (2023-07-31)
 
 
