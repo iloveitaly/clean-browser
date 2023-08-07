@@ -12,14 +12,8 @@ keywords = ["todoist", "browser", "productivity"]
 python = "^3.10"
 pyobjc-framework-ScriptingBridge = "^9.0.1"
 todoist-api-python = "^2.0.1"
-python-dotenv = "^1.0.0"
 chrome-bookmarks = "^2020.10.25"
 click = "^8.1.4"
-
-[tool.poetry.group.dev.dependencies]
-ipython = "^8.14.0"
-ipython-autoimport = "^0.4"
-pdbr = "^0.8.2"
 
 [tool.poetry.scripts]
 clean-workspace = "clean_workspace:main"
