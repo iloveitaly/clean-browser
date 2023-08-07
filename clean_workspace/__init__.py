@@ -1,3 +1,4 @@
+import datetime
 import os
 import plistlib
 import re
@@ -7,6 +8,7 @@ import typing as t
 import chrome_bookmarks
 import click
 from ScriptingBridge import SBApplication
+from todoist_api_python.api import TodoistAPI
 
 
 def todoist_client():
@@ -19,25 +21,17 @@ def todoist_client():
 
     print("todoist api key found, adding to todoist")
 
-    from todoist_api_python.api import TodoistAPI
-
     api = TodoistAPI(todoist_api_key)
     return api
 
 
-def export_to_todoist(task_content, description):
-    # TODO should also support .env here as well
-    import dotenv
-
-    dotenv.load_dotenv(".envrc")
-
+def export_to_todoist(task_content, description, todoist_project, todoist_label):
     api = todoist_client()
     if not api:
         return
 
-    import datetime
+    project_name = todoist_project
 
-    project_name = os.environ.get("TODOIST_PROJECT", "Learning")
     project = None
     projects = api.get_projects()
     project_matches = [project for project in projects if project.name == project_name]
@@ -45,8 +39,8 @@ def export_to_todoist(task_content, description):
     if len(project_matches) == 1:
         project = project_matches[0]
 
-    # find a label called "web-archive" or create it
-    label_name = os.environ.get("TODOIST_LABEL", "web-archive")
+    # find or create the label
+    label_name = todoist_label
     labels = api.get_labels()
     label_matches = [label for label in labels if label.name == label_name]
 
@@ -118,14 +112,17 @@ def get_bookmarks_urls() -> t.List[str]:
     return [bookmark.split("#")[0] for bookmark in raw_bookmark_urls]
 
 
+# TODO trunk ignore should be cleaner
 def quit_browsers():
+    # trunk-ignore-begin(bandit)
     os.system("osascript -e 'quit app \"Safari\"'")
     os.system("osascript -e 'quit app \"Chrome\"'")
-
+    # trunk-ignore-end(bandit)
 
 # the syntax we use is starting and ending with `/`, like sed
 def _is_regex_entry(entry: str):
     return entry.startswith("/") and entry.endswith("/")
+
 
 # assume `regex_blacklist` contains the raw regex strings (starting & ending with /)
 def _in_regex_blacklist(regex_blacklist, url):
@@ -135,10 +132,18 @@ def _in_regex_blacklist(regex_blacklist, url):
 
     return False
 
+
 def _extract_host(url):
     return url.split("/")[2]
 
-def clean_workspace(tab_description, blacklist_domains_file_path, blacklist_urls_file_path):
+
+def clean_workspace(
+    tab_description,
+    blacklist_domains_file_path,
+    blacklist_urls_file_path,
+    todoist_project,
+    todoist_label,
+):
     browser_urls = get_browser_urls()
 
     # if page is blank, there is no url or string does not contain http
@@ -180,7 +185,9 @@ def clean_workspace(tab_description, blacklist_domains_file_path, blacklist_urls
 
         # add a `www.` prefix to each domain in the blacklist and merge it with the existing list
         domain_blacklist = domain_blacklist + [
-            "www." + domain for domain in domain_blacklist if not _is_regex_entry(domain)
+            "www." + domain
+            for domain in domain_blacklist
+            if not _is_regex_entry(domain)
         ]
 
     bookmark_urls = get_bookmarks_urls()
@@ -192,12 +199,12 @@ def clean_workspace(tab_description, blacklist_domains_file_path, blacklist_urls
     ]
 
     browser_urls = [
-        x for x in browser_urls if not _in_regex_blacklist(domain_regex_blacklist, _extract_host(x[0]))
+        x
+        for x in browser_urls
+        if not _in_regex_blacklist(domain_regex_blacklist, _extract_host(x[0]))
     ]
 
-    browser_urls = [
-        x for x in browser_urls if x[0] not in url_blacklist
-    ]
+    browser_urls = [x for x in browser_urls if x[0] not in url_blacklist]
 
     # regex url blacklist is separate from the url blacklist
     browser_urls = [
@@ -205,9 +212,7 @@ def clean_workspace(tab_description, blacklist_domains_file_path, blacklist_urls
     ]
 
     # if the url is in the bookmark list of chrome or safari, skip it
-    browser_urls = [
-        x for x in browser_urls if x[0] not in bookmark_urls
-    ]
+    browser_urls = [x for x in browser_urls if x[0] not in bookmark_urls]
 
     # join url and name with "-" and print to stdout
     todoist_content = ""
@@ -232,15 +237,27 @@ def clean_workspace(tab_description, blacklist_domains_file_path, blacklist_urls
     # since we've archived all content we can now close out Safari & Chrome
     quit_browsers()
 
-    export_to_todoist(todoist_content, tab_description)
+    export_to_todoist(todoist_content, tab_description, todoist_project, todoist_label)
 
 
-
+# TODO why isn't the default displayed with help?
 @click.command()
 @click.option("--blacklist-domains", type=click.Path(), default=None)
 @click.option("--blacklist-urls", type=click.Path(), default=None)
 @click.option("--tab-description", default="", help="Description for tab")
-def main(tab_description, blacklist_domains, blacklist_urls):
+@click.option(
+    "--todoist-label",
+    default="web-archive",
+    help="label in todoist for all created tasks",
+)
+@click.option(
+    "--todoist-project",
+    default="Learning",
+    help="project in todoist for all created tasks",
+)
+def main(
+    tab_description, blacklist_domains, blacklist_urls, todoist_label, todoist_project
+):
     if not is_internet_connected():
         print("internet is not connected")
         return
@@ -268,7 +285,13 @@ def main(tab_description, blacklist_domains, blacklist_urls):
             else "blacklist_urls.txt"
         )
 
-    clean_workspace(tab_description, blacklist_domains, blacklist_urls)
+    clean_workspace(
+        tab_description,
+        blacklist_domains,
+        blacklist_urls,
+        todoist_project,
+        todoist_label,
+    )
 
 
 def archive_old_tasks():
