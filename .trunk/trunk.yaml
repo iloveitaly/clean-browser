@@ -29,6 +29,10 @@ lint:
     - prettier@3.0.1
     - flake8@6.0.0
     - isort@5.12.0
+  ignore:
+    - linters: [ALL]
+      paths:
+        - CHANGELOG.md
 runtimes:
   enabled:
     - go@1.19.5
