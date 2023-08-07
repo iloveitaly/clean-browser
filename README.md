@@ -36,6 +36,8 @@ Options:
   --blacklist-domains PATH
   --blacklist-urls PATH
   --tab-description TEXT    Description for tab
+  --todoist-label TEXT      label in todoist for all created tasks
+  --todoist-project TEXT    project in todoist for all created tasks
   --help                    Show this message and exit.
 ```
 
