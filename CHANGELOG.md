@@ -1,3 +1,13 @@
+## [0.4.1](https://github.com/iloveitaly/clean-browser/compare/v0.4.0...v0.4.1) (2023-08-07)
+
+
+### Bug Fixes
+
+* removing dotenv and other dev not used directly ([52801e5](https://github.com/iloveitaly/clean-browser/commit/52801e5a2bfac7d87ead0e7f3588764455f1a87d))
+* stop pulling label and project from env ([15ed17e](https://github.com/iloveitaly/clean-browser/commit/15ed17e8ed22a41712f05ae74b3f8c2989d97a18))
+
+
+
 # [0.4.0](https://github.com/iloveitaly/clean-browser/compare/v0.3.0...v0.4.0) (2023-08-03)
 
 
