@@ -11,24 +11,15 @@ from ScriptingBridge import SBApplication
 from todoist_api_python.api import TodoistAPI
 
 
-def todoist_client():
-    # extract todoist api key from environment without throwing an exception
-    todoist_api_key = os.environ.get("TODOIST_API_KEY", None)
-
-    if not todoist_api_key:
-        print("todoist api key not found in environment")
-        return
-
-    print("todoist api key found, adding to todoist")
-
-    api = TodoistAPI(todoist_api_key)
-    return api
+def _todoist_api_key():
+    return os.environ.get("TODOIST_API_KEY", None)
 
 
 def export_to_todoist(task_content, description, todoist_project, todoist_label):
-    api = todoist_client()
-    if not api:
-        return
+    key = _todoist_api_key()
+    # trunk-ignore(bandit/B101)
+    assert key is not None
+    api = TodoistAPI(key)
 
     project_name = todoist_project
 
@@ -118,6 +109,7 @@ def quit_browsers():
     os.system("osascript -e 'quit app \"Safari\"'")
     os.system("osascript -e 'quit app \"Chrome\"'")
     # trunk-ignore-end(bandit)
+
 
 # the syntax we use is starting and ending with `/`, like sed
 def _is_regex_entry(entry: str):
@@ -260,6 +252,10 @@ def main(
 ):
     if not is_internet_connected():
         print("internet is not connected")
+        return
+
+    if not _todoist_api_key():
+        print("todoist api key not found in environment")
         return
 
     home_dir = os.path.expanduser("~")
