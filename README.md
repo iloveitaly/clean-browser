@@ -1,3 +1,5 @@
+<!-- trunk-ignore-all(trufflehog/GitHubOauth2) -->
+
 # Clean Workspace: Archive Web Browser Tabs
 
 I've been experimenting with how to make my mornings more productive. One glitch I've found in my mind is I can easily
