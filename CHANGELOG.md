@@ -1,3 +1,12 @@
+## [0.4.2](https://github.com/iloveitaly/clean-browser/compare/v0.4.1...v0.4.2) (2023-08-14)
+
+
+### Bug Fixes
+
+* check api key before running the rest of the script ([e8b3401](https://github.com/iloveitaly/clean-browser/commit/e8b3401ccad6446b3f2bef6dd493fa9aaeafeca7))
+
+
+
 ## [0.4.1](https://github.com/iloveitaly/clean-browser/compare/v0.4.0...v0.4.1) (2023-08-07)
 
 
