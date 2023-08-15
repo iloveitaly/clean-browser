@@ -2,33 +2,27 @@
 
 # Clean Workspace: Archive Web Browser Tabs
 
-I've been experimenting with how to make my mornings more productive. One glitch I've found in my mind is I can easily
+I love experimenting with productivity. One glitch I've found in my mind is I can easily
 get distracted by open tabs on my browser, especially if I'm trying to write or read something which I want to give
 my full attention to. I've found that if I close all my tabs (similar idea to [shrinking context size](http://mikebian.co/improve-motivation-and-focus-with-small-contexts/)), I can focus better on the task at hand. However, I don't
 want to lose any interesting tabs so I never actually do that.
 
-This is simple utility to automate this process. It will close all your tabs (in both Safari & Chrome), and send them to [todoist](https://mikebian.co/todoist) (and output) them to the terminal.
+This is utility to fix this issue. It closes all your tabs (in both Safari & Chrome), sends them to [todoist](https://mikebian.co/todoist)
+with a specified project + label, and outputs the list to the terminal (mostly for debugging).
 
-We'll see if this actually helps!
+This has seemed to really help my mind and make it easy for me to find interesting things I've run into in the past.
 
 ## Installation
 
 ```shell
 pip install clean-workspace
-clean-workspace
 ```
 
-## Development
-
-```shell
-poetry install
-poetry run clean-workspace
-```
+- `TODOIST_API_KEY` has to exist in your shell environment for the tool to run.
+  I recommend using [direnv](https://direnv.net/) to do this. Add your todoist token to `.envrc` and `direnv allow .`
+- Customize the url and domain blacklist
 
 ## Usage
-
-- Add your todoist token to `.envrc` and `direnv allow .`
-- Customize the url and domain blacklist
 
 ```shell
 ❯ clean-workspace --help
@@ -38,9 +32,18 @@ Options:
   --blacklist-domains PATH
   --blacklist-urls PATH
   --tab-description TEXT    Description for tab
-  --todoist-label TEXT      label in todoist for all created tasks
+  --todoist-label TEXT      label in todoist for all created tasks  [default:
+                            web-archive]
   --todoist-project TEXT    project in todoist for all created tasks
+                            [default: Learning]
   --help                    Show this message and exit.
+```
+
+## Development
+
+```shell
+poetry install
+poetry run clean-workspace
 ```
 
 ### Regex Entries
