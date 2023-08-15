@@ -141,16 +141,14 @@ def clean_workspace(
     # if page is blank, there is no url or string does not contain http
     browser_urls = [x for x in browser_urls if x[0] is not None and "http" in x[0]]
 
-    # remove duplicates
-    browser_urls = list(set(browser_urls))
-
     # sort (in place) list of urls by domain name of url
     browser_urls.sort(key=lambda x: _extract_host(x[0]))
 
     # strip all anchors from the urls
     browser_urls = [(url.split("#")[0], name) for url, name in browser_urls]
 
-    # TODO load these files from a home config file
+    # remove duplicates
+    browser_urls = list(set(browser_urls))
 
     # user configurable blacklist for urls you don't want to archive
     url_blacklist = []
@@ -226,13 +224,12 @@ def clean_workspace(
 
     print(f"\n{todoist_content}\n")
 
+    export_to_todoist(todoist_content, tab_description, todoist_project, todoist_label)
+
     # since we've archived all content we can now close out Safari & Chrome
     quit_browsers()
 
-    export_to_todoist(todoist_content, tab_description, todoist_project, todoist_label)
 
-
-# TODO why isn't the default displayed with help?
 @click.command()
 @click.option("--blacklist-domains", type=click.Path(), default=None)
 @click.option("--blacklist-urls", type=click.Path(), default=None)
@@ -240,11 +237,13 @@ def clean_workspace(
 @click.option(
     "--todoist-label",
     default="web-archive",
+    show_default=True,
     help="label in todoist for all created tasks",
 )
 @click.option(
     "--todoist-project",
     default="Learning",
+    show_default=True,
     help="project in todoist for all created tasks",
 )
 def main(
