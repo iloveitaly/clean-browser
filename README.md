@@ -1,5 +1,9 @@
 <!-- trunk-ignore-all(trufflehog/GitHubOauth2) -->
 
+[![Release Notes](https://img.shields.io/github/release/iloveitaly/clean-browser)](https://github.com/iloveitaly/clean-browser/releases)
+[![Downloads](https://static.pepy.tech/badge/clean-workspace/month)](https://pepy.tech/project/clean-workspace)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Clean Workspace: Archive Web Browser Tabs
 
 I love experimenting with productivity. One glitch I've found in my mind is I can easily
