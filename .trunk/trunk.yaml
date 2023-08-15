@@ -12,7 +12,7 @@ lint:
     - flake8@6.1.0
     - isort@5.12.0
     - prettier@3.0.1
-    - checkov@2.3.364
+    - checkov@2.3.365
     - osv-scanner@1.3.6
     - trivy@0.44.1
     - trufflehog@3.48.0
