@@ -1,3 +1,12 @@
+## [0.4.4](https://github.com/iloveitaly/clean-browser/compare/v0.4.3...v0.4.4) (2023-09-02)
+
+
+### Bug Fixes
+
+* open browsers after quitting them ([e67668e](https://github.com/iloveitaly/clean-browser/commit/e67668ea3f32f866b4d42bca8e17be9e62e90e9f))
+
+
+
 ## [0.4.3](https://github.com/iloveitaly/clean-browser/compare/v0.4.2...v0.4.3) (2023-08-15)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * support regex entries on url blacklist and domain blacklist ([8b18b02](https://github.com/iloveitaly/clean-browser/commit/8b18b0294e4fa161bee65737454dcbf934053d18))
-
-
-
-# [0.3.0](https://github.com/iloveitaly/clean-browser/compare/v0.2.0...v0.3.0) (2023-07-31)
-
-
-### Features
-
-* regex support ([78e7525](https://github.com/iloveitaly/clean-browser/commit/78e7525aaf7ec2fd0137ace4739c771b54174aa5))
 
 
 
