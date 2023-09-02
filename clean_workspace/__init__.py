@@ -104,11 +104,23 @@ def get_bookmarks_urls() -> t.List[str]:
 
 
 # TODO trunk ignore should be cleaner
-def quit_browsers():
+def restart_application(app_name: str) -> None:
     # trunk-ignore-begin(bandit)
-    os.system("osascript -e 'quit app \"Safari\"'")
-    os.system("osascript -e 'quit app \"Chrome\"'")
+    os.system(
+        f"""
+    osascript -e '
+    tell application "{app_name}" to quit;
+    delay 1;
+    tell application "{app_name}" to activate;
+    '
+    """
+    )
     # trunk-ignore-end(bandit)
+
+
+def quit_browsers():
+    restart_application("Safari")
+    restart_application("Chrome")
 
 
 # the syntax we use is starting and ending with `/`, like sed
