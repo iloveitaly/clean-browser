@@ -4,6 +4,7 @@
 [![Release Notes](https://img.shields.io/github/release/iloveitaly/clean-browser)](https://github.com/iloveitaly/clean-browser/releases)
 [![Downloads](https://static.pepy.tech/badge/clean-workspace/month)](https://pepy.tech/project/clean-workspace)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 
 # Clean Workspace: Archive Web Browser Tabs
 
