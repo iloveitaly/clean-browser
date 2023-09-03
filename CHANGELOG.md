@@ -1,3 +1,12 @@
+## [0.4.5](https://github.com/iloveitaly/clean-browser/compare/v0.4.4...v0.4.5) (2023-09-03)
+
+
+### Bug Fixes
+
+* fix semicolons at the end of the applescript ([a084a37](https://github.com/iloveitaly/clean-browser/commit/a084a37b88063404b24db275284be9a9c1d19edf))
+
+
+
 ## [0.4.4](https://github.com/iloveitaly/clean-browser/compare/v0.4.3...v0.4.4) (2023-09-02)
 
 
@@ -32,15 +41,6 @@
 
 * removing dotenv and other dev not used directly ([52801e5](https://github.com/iloveitaly/clean-browser/commit/52801e5a2bfac7d87ead0e7f3588764455f1a87d))
 * stop pulling label and project from env ([15ed17e](https://github.com/iloveitaly/clean-browser/commit/15ed17e8ed22a41712f05ae74b3f8c2989d97a18))
-
-
-
-# [0.4.0](https://github.com/iloveitaly/clean-browser/compare/v0.3.0...v0.4.0) (2023-08-03)
-
-
-### Features
-
-* support regex entries on url blacklist and domain blacklist ([8b18b02](https://github.com/iloveitaly/clean-browser/commit/8b18b0294e4fa161bee65737454dcbf934053d18))
 
 
 
