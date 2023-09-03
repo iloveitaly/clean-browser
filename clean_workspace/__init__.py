@@ -109,9 +109,9 @@ def restart_application(app_name: str) -> None:
     os.system(
         f"""
     osascript -e '
-    tell application "{app_name}" to quit;
-    delay 1;
-    tell application "{app_name}" to activate;
+    tell application "{app_name}" to quit
+    delay 1
+    tell application "{app_name}" to activate
     '
     """
     )
