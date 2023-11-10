@@ -15,6 +15,25 @@ def _todoist_api_key():
     return os.environ.get("TODOIST_API_KEY", None)
 
 
+def _get_labels(api, label_text):
+    if not label_text:
+        return None
+
+    label_name = label_text
+    labels = api.get_labels()
+    label_matches = [label for label in labels if label.name == label_name]
+
+    # assigning label for debugging
+    if len(label_matches) == 0:
+        # https://developer.todoist.com/rest/v1/#create-a-new-label
+        print(f"could not find {label_name} label, creating it")
+        api.add_label(name=label_name)
+    else:
+        label_matches[0]
+
+    return label_matches
+
+
 def export_to_todoist(task_content, description, todoist_project, todoist_label):
     key = _todoist_api_key()
     # trunk-ignore(bandit/B101)
@@ -30,18 +49,7 @@ def export_to_todoist(task_content, description, todoist_project, todoist_label)
     if len(project_matches) == 1:
         project = project_matches[0]
 
-    # find or create the label
-    label_name = todoist_label
-    labels = api.get_labels()
-    label_matches = [label for label in labels if label.name == label_name]
-
-    # assigning label for debugging
-    if len(label_matches) == 0:
-        # https://developer.todoist.com/rest/v1/#create-a-new-label
-        print(f"could not find {label_name} label, creating it")
-        api.add_label(name=label_name)
-    else:
-        label_matches[0]
+    labels = _get_labels(api, todoist_label)
 
     # https://developer.todoist.com/rest/v2#create-a-new-task
     api.add_task(
@@ -52,7 +60,7 @@ def export_to_todoist(task_content, description, todoist_project, todoist_label)
         description=task_content,
         # date is serialized in the task description, no need for a due date
         due_string="no date",
-        labels=[label_name],
+        labels=labels,
         project_id=project.id if project else None,
     )
 
@@ -254,7 +262,7 @@ def clean_workspace(
 )
 @click.option(
     "--todoist-project",
-    default="Learning",
+    default="Web Archive",
     show_default=True,
     help="project in todoist for all created tasks",
 )
