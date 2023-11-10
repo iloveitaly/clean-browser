@@ -10,13 +10,15 @@
 
 I love experimenting with productivity. One glitch I've found in my mind is I can easily
 get distracted by open tabs on my browser, especially if I'm trying to write or read something which I want to give
-my full attention to. I've found that if I close all my tabs (similar idea to [shrinking context size](http://mikebian.co/improve-motivation-and-focus-with-small-contexts/)), I can focus better on the task at hand. However, I don't
-want to lose any interesting tabs so I never actually do that.
+my full attention to.
+
+I've found that if I close all my tabs (similar idea to [shrinking context size](http://mikebian.co/improve-motivation-and-focus-with-small-contexts/)), I can focus better on the task at hand. However, I don't
+want to lose any interesting tabs so I don't easily quit my browsers. It's just the little extra of cognitive energy required to add more focus that doesn't get spent.
 
 This is utility to fix this issue. It closes all your tabs (in both Safari & Chrome), sends them to [todoist](https://mikebian.co/todoist)
-with a specified project + label, and outputs the list to the terminal (mostly for debugging).
+with a specified project and optionally a label, and outputs the list to the terminal (mostly for debugging).
 
-This has seemed to really help my mind and make it easy for me to find interesting things I've run into in the past.
+This utility has helped my mind and made it easy for me to find interesting things I've run into in the past. I've tied this into a 'first wake' [hyper focus](https://mikebian.co/hyper-focus) script to automatically run each morning when I first open my computer.
 
 ## Installation
 
@@ -88,3 +90,4 @@ Here's a [full example](https://github.com/iloveitaly/dotfiles/blob/648010ec9a9c
 - [ ] move blacklist files into example area of repo
 - [ ] look at previous tasks and see if links are contained there before including them again
 - [ ] support google chrome canary
+- [ ] check to make sure regex gdrive urls work
