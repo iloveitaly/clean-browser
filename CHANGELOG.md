@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/iloveitaly/clean-browser/compare/v0.4.5...v0.5.0) (2023-11-10)
+
+
+### Features
+
+* support nil labels, use "web archive" as default project ([ff61cd1](https://github.com/iloveitaly/clean-browser/commit/ff61cd1647e65e95165052be0cb980aa6809a450))
+
+
+
 ## [0.4.5](https://github.com/iloveitaly/clean-browser/compare/v0.4.4...v0.4.5) (2023-09-03)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * check api key before running the rest of the script ([e8b3401](https://github.com/iloveitaly/clean-browser/commit/e8b3401ccad6446b3f2bef6dd493fa9aaeafeca7))
-
-
-
-## [0.4.1](https://github.com/iloveitaly/clean-browser/compare/v0.4.0...v0.4.1) (2023-08-07)
-
-
-### Bug Fixes
-
-* removing dotenv and other dev not used directly ([52801e5](https://github.com/iloveitaly/clean-browser/commit/52801e5a2bfac7d87ead0e7f3588764455f1a87d))
-* stop pulling label and project from env ([15ed17e](https://github.com/iloveitaly/clean-browser/commit/15ed17e8ed22a41712f05ae74b3f8c2989d97a18))
 
 
 
