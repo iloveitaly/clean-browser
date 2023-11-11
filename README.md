@@ -16,7 +16,7 @@ I've found that if I close all my tabs (similar idea to [shrinking context size]
 want to lose any interesting tabs so I don't easily quit my browsers. It's just the little extra of cognitive energy required to add more focus that doesn't get spent.
 
 This is utility to fix this issue. It closes all your tabs (in both Safari & Chrome), sends them to [todoist](https://mikebian.co/todoist)
-with a specified project and optionally a label, and outputs the list to the terminal (mostly for debugging).
+with a specified project and optionally a label, and outputs the list to the terminal (mostly for debugging). Only unique URLs are sent to Todoist, if you have a previous "archive task" with a URL archived it will not be archived again.
 
 This utility has helped my mind and made it easy for me to find interesting things I've run into in the past. I've tied this into a 'first wake' [hyper focus](https://mikebian.co/hyper-focus) script to automatically run each morning when I first open my computer.
 
@@ -79,6 +79,15 @@ EOT
 
 Here's a [full example](https://github.com/iloveitaly/dotfiles/blob/648010ec9a9c8f1fb0aa70be138994689f3bbfb3/.config/focus/initial_wake.sh#L42-L53) of using this with [hyper-focus](https://www.raycast.com/iloveitaly/hyper-focus).
 
+## Debugging
+
+You can use `ipython` to interactively play with the todoist API:
+
+```shell
+from clean_workspace import _todoist_api_key
+api = TodoistAPI(_todoist_api_key())
+```
+
 ## Inspiration
 
 - <https://gist.github.com/aleks-mariusz/cc27b21f2c5b91fbd285>
@@ -88,6 +97,6 @@ Here's a [full example](https://github.com/iloveitaly/dotfiles/blob/648010ec9a9c
 
 - [ ] Indicate in python config that this is macOS only in poetry config?
 - [ ] move blacklist files into example area of repo
-- [ ] look at previous tasks and see if links are contained there before including them again
+- [x] look at previous tasks and see if links are contained there before including them again
 - [ ] support google chrome canary
 - [ ] check to make sure regex gdrive urls work
