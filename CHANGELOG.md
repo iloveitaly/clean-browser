@@ -1,3 +1,18 @@
+# [0.6.0](https://github.com/iloveitaly/clean-browser/compare/v0.5.0...v0.6.0) (2023-11-11)
+
+
+### Bug Fixes
+
+* bad label assigment logic ([15907bf](https://github.com/iloveitaly/clean-browser/commit/15907bf41b7e33534b03b9d30e5c4cf647342b39))
+
+
+### Features
+
+* don't archive a url if it's already archived in an old task ([565588c](https://github.com/iloveitaly/clean-browser/commit/565588c8439436d0139407dad8354453b35372c7))
+* larger list of blocked domains ([61badd5](https://github.com/iloveitaly/clean-browser/commit/61badd54b000659f2848f1973aa8bcd9a67dc6af))
+
+
+
 # [0.5.0](https://github.com/iloveitaly/clean-browser/compare/v0.4.5...v0.5.0) (2023-11-10)
 
 
@@ -31,15 +46,6 @@
 ### Bug Fixes
 
 * default display on cli ([7ae89da](https://github.com/iloveitaly/clean-browser/commit/7ae89da447372304a8e504d66847fb32c0392f0c))
-
-
-
-## [0.4.2](https://github.com/iloveitaly/clean-browser/compare/v0.4.1...v0.4.2) (2023-08-14)
-
-
-### Bug Fixes
-
-* check api key before running the rest of the script ([e8b3401](https://github.com/iloveitaly/clean-browser/commit/e8b3401ccad6446b3f2bef6dd493fa9aaeafeca7))
 
 
 
