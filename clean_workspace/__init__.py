@@ -4,6 +4,7 @@ import plistlib
 import re
 import sys
 import typing as t
+from functools import lru_cache
 
 import chrome_bookmarks
 import click
@@ -15,6 +16,8 @@ def _todoist_api_key():
     return os.environ.get("TODOIST_API_KEY", None)
 
 
+# totally unnecessary for the size of the project...
+@lru_cache(maxsize=None)
 def _get_labels(api, label_text):
     # allow empty labels as a valid value
     if not label_text:
@@ -33,32 +36,48 @@ def _get_labels(api, label_text):
     return [label_name]
 
 
-def export_to_todoist(task_content, description, todoist_project, todoist_label):
+def only_one(comprehension):
+    if len(comprehension) != 1:
+        raise Exception("Expected to find exactly one matching item")
+
+    return comprehension[0]
+
+
+@lru_cache(maxsize=None)
+def _get_project(api, project_name):
+    projects = api.get_projects()
+    return only_one([project for project in projects if project.name == project_name])
+
+
+def _extract_urls_from_markdown(markdown):
+    url_regex = r"https?://[^\s)\]]+"
+    return re.findall(url_regex, markdown)
+
+
+def export_to_todoist(task_description, description, todoist_project, todoist_label):
     key = _todoist_api_key()
     # trunk-ignore(bandit/B101)
     assert key is not None
     api = TodoistAPI(key)
 
-    project_name = todoist_project
-
-    project = None
-    projects = api.get_projects()
-    project_matches = [project for project in projects if project.name == project_name]
-
-    if len(project_matches) == 1:
-        project = project_matches[0]
-
+    project = _get_project(api, todoist_project)
     labels = _get_labels(api, todoist_label)
+
+    task_content = "_".join(
+        filter(
+            None,
+            [description, "web archive", datetime.datetime.now().strftime("%Y-%m-%d")],
+        )
+    )
 
     # https://developer.todoist.com/rest/v2#create-a-new-task
     api.add_task(
         # set content to "web archive CURRENT_DAY" using format YYYY-MM-DD
-        content="{}web archive {}".format(
-            description, datetime.datetime.now().strftime("%Y-%m-%d")
-        ),
-        description=task_content,
+        content=task_content,
+        description=task_description,
         # date is serialized in the task description, no need for a due date
         due_string="no date",
+        # confusing, but labels are strings not IDs
         labels=labels,
         project_id=project.id if project else None,
     )
@@ -126,6 +145,7 @@ def restart_application(app_name: str) -> None:
 
 
 def quit_browsers():
+    return
     restart_application("Safari")
     restart_application("Chrome")
 
@@ -146,6 +166,31 @@ def _in_regex_blacklist(regex_blacklist, url):
 
 def _extract_host(url):
     return url.split("/")[2]
+
+
+def _get_existing_web_archive_links(todoist_project, todoist_label):
+    # TODO should probably refactor to DRY this up
+    key = _todoist_api_key()
+    assert key is not None
+    api = TodoistAPI(key)
+
+    project = _get_project(api, todoist_project)
+    labels = _get_labels(api, todoist_label)
+
+    # filter by label + project to find all of the existing links and construct an 'already archived' link DB
+    filter = f"#{project.name}"
+    if labels:
+        filter += f" & @{labels[0]}"
+
+    all_web_archive_tasks = api.get_tasks(filter=filter)
+    all_web_archive_links = [
+        _extract_urls_from_markdown(task.description) for task in all_web_archive_tasks
+    ]
+    all_web_archive_links = [
+        item for sublist in all_web_archive_links for item in sublist
+    ]
+
+    return all_web_archive_links
 
 
 def clean_workspace(
@@ -220,33 +265,46 @@ def clean_workspace(
         x for x in browser_urls if not _in_regex_blacklist(url_regex_blacklist, x[0])
     ]
 
+    # now do the regular url blacklist
+    browser_urls = [x for x in browser_urls if x[0] not in url_blacklist]
+
     # if the url is in the bookmark list of chrome or safari, skip it
     browser_urls = [x for x in browser_urls if x[0] not in bookmark_urls]
 
-    # join url and name with "-" and print to stdout
-    todoist_content = ""
-    for url_with_name in browser_urls:
-        if (
-            url_with_name[0] not in bookmark_urls
-            # TODO should allow for regex in the URL matching, or at least globbing
-            # if the url
-            and url_with_name[0] not in url_blacklist
-        ):
-            todoist_content += "* " + " - ".join(url_with_name) + "\n"
-        else:
-            print(f"skipping url\t{url_with_name[0]}")
+    existing_archived_links = _get_existing_web_archive_links(
+        todoist_project, todoist_label
+    )
 
-    if not todoist_content.strip():
+    # filter out all urls that have already been archived
+    browser_urls = [x for x in browser_urls if x[0] not in existing_archived_links]
+
+    if not browser_urls:
         print("no urls to add, exiting")
+        # still could be urls we don't care about and over time this could junk up browser processes in my experience
         quit_browsers()
         sys.exit()
 
-    print(f"\n{todoist_content}\n")
+    task_description = _generate_todoist_content(browser_urls)
+    print(task_description)
 
-    export_to_todoist(todoist_content, tab_description, todoist_project, todoist_label)
+    export_to_todoist(
+        task_description,
+        tab_description,
+        todoist_project,
+        todoist_label,
+    )
 
     # since we've archived all content we can now close out Safari & Chrome
     quit_browsers()
+
+
+# join url and name with "-" and print to stdout, use markdown list format for each entry
+def _generate_todoist_content(browser_urls):
+    todoist_content = ""
+    for url_with_name in browser_urls:
+        todoist_content += "* " + " - ".join(url_with_name) + "\n"
+
+    return todoist_content
 
 
 @click.command()
@@ -306,12 +364,6 @@ def main(
         todoist_project,
         todoist_label,
     )
-
-
-def archive_old_tasks():
-    # find all old tasks (>1mo) and archive them
-    # optionally only do this when there is not a custom name in the title
-    pass
 
 
 def is_internet_connected():
