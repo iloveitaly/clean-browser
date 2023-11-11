@@ -16,22 +16,21 @@ def _todoist_api_key():
 
 
 def _get_labels(api, label_text):
+    # allow empty labels as a valid value
     if not label_text:
-        return None
+        return []
 
     label_name = label_text
     labels = api.get_labels()
     label_matches = [label for label in labels if label.name == label_name]
 
-    # assigning label for debugging
+    # create the label if it doesn't exist
     if len(label_matches) == 0:
         # https://developer.todoist.com/rest/v1/#create-a-new-label
         print(f"could not find {label_name} label, creating it")
         api.add_label(name=label_name)
-    else:
-        label_matches[0]
 
-    return label_matches
+    return [label_name]
 
 
 def export_to_todoist(task_content, description, todoist_project, todoist_label):
@@ -324,7 +323,3 @@ def is_internet_connected():
         return True
     except socket.error:
         return False
-
-
-if __name__ == "__main__":
-    main()
