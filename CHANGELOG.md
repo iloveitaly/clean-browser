@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/iloveitaly/clean-browser/compare/v0.6.0...v0.6.1) (2023-11-12)
+
+
+### Bug Fixes
+
+* reenabled quitting browsers logic ([430224b](https://github.com/iloveitaly/clean-browser/commit/430224b1801b4dcf0dddc1f9b1a4e4d51367bb2b))
+
+
+
 # [0.6.0](https://github.com/iloveitaly/clean-browser/compare/v0.5.0...v0.6.0) (2023-11-11)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * open browsers after quitting them ([e67668e](https://github.com/iloveitaly/clean-browser/commit/e67668ea3f32f866b4d42bca8e17be9e62e90e9f))
-
-
-
-## [0.4.3](https://github.com/iloveitaly/clean-browser/compare/v0.4.2...v0.4.3) (2023-08-15)
-
-
-### Bug Fixes
-
-* default display on cli ([7ae89da](https://github.com/iloveitaly/clean-browser/commit/7ae89da447372304a8e504d66847fb32c0392f0c))
 
 
 
