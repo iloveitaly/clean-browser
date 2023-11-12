@@ -145,7 +145,6 @@ def restart_application(app_name: str) -> None:
 
 
 def quit_browsers():
-    return
     restart_application("Safari")
     restart_application("Chrome")
 
