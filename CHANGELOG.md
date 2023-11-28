@@ -1,3 +1,12 @@
+## [0.6.2](https://github.com/iloveitaly/clean-browser/compare/v0.6.1...v0.6.2) (2023-11-28)
+
+
+### Bug Fixes
+
+* adding backoff to all todoist calls ([d2b6f0b](https://github.com/iloveitaly/clean-browser/commit/d2b6f0b1f6e60dd0cb60b17910587d97a6ec90d6))
+
+
+
 ## [0.6.1](https://github.com/iloveitaly/clean-browser/compare/v0.6.0...v0.6.1) (2023-11-12)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * fix semicolons at the end of the applescript ([a084a37](https://github.com/iloveitaly/clean-browser/commit/a084a37b88063404b24db275284be9a9c1d19edf))
-
-
-
-## [0.4.4](https://github.com/iloveitaly/clean-browser/compare/v0.4.3...v0.4.4) (2023-09-02)
-
-
-### Bug Fixes
-
-* open browsers after quitting them ([e67668e](https://github.com/iloveitaly/clean-browser/commit/e67668ea3f32f866b4d42bca8e17be9e62e90e9f))
 
 
 
