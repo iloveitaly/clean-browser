@@ -10,7 +10,7 @@ keywords = ["todoist", "browser", "productivity"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pyobjc-framework-ScriptingBridge = ">=9.0.1,<11.0.0"
+pyobjc-framework-ScriptingBridge = "^10.1"
 todoist-api-python = "^2.1.3"
 chrome-bookmarks = "^2020.10.25"
 click = "^8.1.7"
