@@ -40,7 +40,6 @@ feedbin.com
 donotpay.com
 southwest.com
 meet.google.com
-readwise.io
 trello.com
 dashboard.stripe.com
 grammarly.com
@@ -50,9 +49,14 @@ icloud.com
 target.com
 /.*barclaycardus.com/
 read.readwise.io
+readwise.io
 analytics.twitter
 hn.algolia.com
 hellosign.com
 wealthfront.com
 peerstreet.com
 sentventures.com
+tailscale.com
+figma.com
+/.*superhuman\.com/
+fast.com
