@@ -5,7 +5,7 @@ description = "Collect all browser URLs, output to terminal, and archive to todo
 authors = ["Mike Bianco <mike@mikebian.co>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/iloveitaly/clean-workspace"
+homepage = "https://github.com/iloveitaly/clean-browser"
 keywords = ["todoist", "browser", "productivity"]
 
 [tool.poetry.dependencies]
