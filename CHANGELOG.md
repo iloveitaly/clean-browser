@@ -1,3 +1,12 @@
+## [0.6.3](https://github.com/iloveitaly/clean-browser/compare/v0.6.2...v0.6.3) (2024-03-15)
+
+
+### Bug Fixes
+
+* homepage url reference ([bda5462](https://github.com/iloveitaly/clean-browser/commit/bda546251690d7efc4ea5397ca4cbcc79dd35c5a))
+
+
+
 ## [0.6.2](https://github.com/iloveitaly/clean-browser/compare/v0.6.1...v0.6.2) (2023-11-28)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * support nil labels, use "web archive" as default project ([ff61cd1](https://github.com/iloveitaly/clean-browser/commit/ff61cd1647e65e95165052be0cb980aa6809a450))
-
-
-
-## [0.4.5](https://github.com/iloveitaly/clean-browser/compare/v0.4.4...v0.4.5) (2023-09-03)
-
-
-### Bug Fixes
-
-* fix semicolons at the end of the applescript ([a084a37](https://github.com/iloveitaly/clean-browser/commit/a084a37b88063404b24db275284be9a9c1d19edf))
 
 
 
