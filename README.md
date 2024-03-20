@@ -95,7 +95,7 @@ api = TodoistAPI(_todoist_api_key())
 
 ## TODO
 
-- [ ] Indicate in python config that this is macOS only in poetry config?
+- [ ] Indicate in python config that this is macOS only in poetry config? I wonder if pyobjc does this in some way?
 - [ ] move blacklist files into example area of repo
 - [x] look at previous tasks and see if links are contained there before including them again
 - [ ] support google chrome canary
