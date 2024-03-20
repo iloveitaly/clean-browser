@@ -113,6 +113,8 @@ def export_to_todoist(task_description, description, todoist_project, todoist_la
         project_id=project.id if project else None,
     )
 
+    print("todoist task created")
+
 
 def get_browser_urls() -> t.List[str]:
     browser_urls = []

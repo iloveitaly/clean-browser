@@ -60,3 +60,4 @@ tailscale.com
 figma.com
 /.*superhuman\.com/
 fast.com
+app.todoist.com
