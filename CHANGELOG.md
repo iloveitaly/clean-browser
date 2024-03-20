@@ -1,3 +1,12 @@
+## [0.6.4](https://github.com/iloveitaly/clean-browser/compare/v0.6.3...v0.6.4) (2024-03-20)
+
+
+### Bug Fixes
+
+* log when task is complete, adding todoist to blocklist ([6bade9a](https://github.com/iloveitaly/clean-browser/commit/6bade9afbc51c59445b705fac90645824d65d1c1))
+
+
+
 ## [0.6.3](https://github.com/iloveitaly/clean-browser/compare/v0.6.2...v0.6.3) (2024-03-15)
 
 
@@ -37,15 +46,6 @@
 
 * don't archive a url if it's already archived in an old task ([565588c](https://github.com/iloveitaly/clean-browser/commit/565588c8439436d0139407dad8354453b35372c7))
 * larger list of blocked domains ([61badd5](https://github.com/iloveitaly/clean-browser/commit/61badd54b000659f2848f1973aa8bcd9a67dc6af))
-
-
-
-# [0.5.0](https://github.com/iloveitaly/clean-browser/compare/v0.4.5...v0.5.0) (2023-11-10)
-
-
-### Features
-
-* support nil labels, use "web archive" as default project ([ff61cd1](https://github.com/iloveitaly/clean-browser/commit/ff61cd1647e65e95165052be0cb980aa6809a450))
 
 
 
