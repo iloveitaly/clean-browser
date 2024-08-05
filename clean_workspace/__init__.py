@@ -10,6 +10,7 @@ import chrome_bookmarks
 import click
 from ScriptingBridge import SBApplication
 from todoist_api_python.api import TodoistAPI
+from clean_workspace.archive import archive_old_tasks
 
 
 # https://github.com/Doist/todoist-api-python/issues/38
@@ -339,6 +340,11 @@ def _generate_todoist_content(browser_urls):
     return todoist_content
 
 
+@click.group()
+def cli():
+    pass
+
+
 @click.command()
 @click.option("--blacklist-domains", type=click.Path(), default=None)
 @click.option("--blacklist-urls", type=click.Path(), default=None)
@@ -355,7 +361,7 @@ def _generate_todoist_content(browser_urls):
     show_default=True,
     help="project in todoist for all created tasks",
 )
-def main(
+def clean_workspace_command(
     tab_description, blacklist_domains, blacklist_urls, todoist_label, todoist_project
 ):
     if not is_internet_connected():
@@ -396,6 +402,19 @@ def main(
         todoist_project,
         todoist_label,
     )
+
+
+@click.command()
+def archive_old_tasks_command():
+    archive_old_tasks()
+
+
+cli.add_command(clean_workspace_command, name="clean-workspace")
+cli.add_command(archive_old_tasks_command, name="archive-old-tasks")
+
+
+if __name__ == "__main__":
+    cli()
 
 
 def is_internet_connected():
