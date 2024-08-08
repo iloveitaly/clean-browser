@@ -401,9 +401,9 @@ def main(
 def is_internet_connected():
     import socket
 
-    s = socket.socket(socket.AF_INET)
     try:
-        s.connect(("google.com", 80))
-        return True
+        with socket.socket(socket.AF_INET) as s:
+            s.connect(("google.com", 80))
+            return True
     except socket.error:
         return False
