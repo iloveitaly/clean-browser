@@ -1,3 +1,12 @@
+## [0.6.5](https://github.com/iloveitaly/clean-browser/compare/v0.6.4...v0.6.5) (2024-08-08)
+
+
+### Bug Fixes
+
+* unclosed py socket error ([e37d358](https://github.com/iloveitaly/clean-browser/commit/e37d3587b476a53ce94de6ece6d252add6078f1f))
+
+
+
 ## [0.6.4](https://github.com/iloveitaly/clean-browser/compare/v0.6.3...v0.6.4) (2024-03-20)
 
 
@@ -31,21 +40,6 @@
 ### Bug Fixes
 
 * reenabled quitting browsers logic ([430224b](https://github.com/iloveitaly/clean-browser/commit/430224b1801b4dcf0dddc1f9b1a4e4d51367bb2b))
-
-
-
-# [0.6.0](https://github.com/iloveitaly/clean-browser/compare/v0.5.0...v0.6.0) (2023-11-11)
-
-
-### Bug Fixes
-
-* bad label assigment logic ([15907bf](https://github.com/iloveitaly/clean-browser/commit/15907bf41b7e33534b03b9d30e5c4cf647342b39))
-
-
-### Features
-
-* don't archive a url if it's already archived in an old task ([565588c](https://github.com/iloveitaly/clean-browser/commit/565588c8439436d0139407dad8354453b35372c7))
-* larger list of blocked domains ([61badd5](https://github.com/iloveitaly/clean-browser/commit/61badd54b000659f2848f1973aa8bcd9a67dc6af))
 
 
 

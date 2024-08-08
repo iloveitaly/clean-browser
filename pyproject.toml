@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clean-workspace"
-version = "0.6.4"
+version = "0.6.5"
 description = "Collect all browser URLs, output to terminal, and archive to todoist. Useful for cleaning up your workspace at the end of the day, without loosing important urls."
 authors = ["Mike Bianco <mike@mikebian.co>"]
 license = "MIT"
