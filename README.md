@@ -33,7 +33,7 @@ pip install clean-workspace
 ## Usage
 
 ```shell
-❯ clean-workspace --help
+clean-workspace --help
 Usage: clean-workspace [OPTIONS]
 
 Options:
