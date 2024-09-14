@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/iloveitaly/clean-browser/compare/v0.6.5...v0.7.0) (2024-09-14)
+
+
+### Features
+
+* wait for internet vs failing, improved todoist patch ([c55d6e3](https://github.com/iloveitaly/clean-browser/commit/c55d6e399b757546f822ee6c65d8739ef7a2d381))
+
+
+
 ## [0.6.5](https://github.com/iloveitaly/clean-browser/compare/v0.6.4...v0.6.5) (2024-08-08)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * adding backoff to all todoist calls ([d2b6f0b](https://github.com/iloveitaly/clean-browser/commit/d2b6f0b1f6e60dd0cb60b17910587d97a6ec90d6))
-
-
-
-## [0.6.1](https://github.com/iloveitaly/clean-browser/compare/v0.6.0...v0.6.1) (2023-11-12)
-
-
-### Bug Fixes
-
-* reenabled quitting browsers logic ([430224b](https://github.com/iloveitaly/clean-browser/commit/430224b1801b4dcf0dddc1f9b1a4e4d51367bb2b))
 
 
 
