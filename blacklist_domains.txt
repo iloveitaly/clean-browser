@@ -64,3 +64,8 @@ app.todoist.com
 savvycal.com
 robinhood.com
 schwab.com
+booking.com
+ryanair.com
+docs.python.org
+duckduckgo.com
+chat.lindy.ai

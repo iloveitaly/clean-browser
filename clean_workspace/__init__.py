@@ -11,36 +11,8 @@ import click
 from ScriptingBridge import SBApplication
 from todoist_api_python.api import TodoistAPI
 
-
-# https://github.com/Doist/todoist-api-python/issues/38
-# backoff 5xx errors
-def patch_todoist_api():
-    import backoff
-    import requests
-    import todoist_api_python.http_requests
-
-    patch_targets = ["delete", "get", "json", "post"]
-    for target in patch_targets:
-        original_function = getattr(todoist_api_python.http_requests, target)
-
-        setattr(
-            todoist_api_python.http_requests,
-            f"original_{target}",
-            original_function,
-        )
-
-        patched_function = backoff.on_exception(
-            backoff.expo, requests.exceptions.HTTPError
-        )(original_function)
-
-        setattr(
-            todoist_api_python.http_requests,
-            target,
-            patched_function,
-        )
-
-
-patch_todoist_api()
+from clean_workspace.internet import wait_for_internet_connection
+import clean_workspace.patch as _
 
 
 def _todoist_api_key():
@@ -358,9 +330,7 @@ def _generate_todoist_content(browser_urls):
 def main(
     tab_description, blacklist_domains, blacklist_urls, todoist_label, todoist_project
 ):
-    if not is_internet_connected():
-        print("internet is not connected")
-        return
+    wait_for_internet_connection()
 
     if not _todoist_api_key():
         print("todoist api key not found in environment")
@@ -396,14 +366,3 @@ def main(
         todoist_project,
         todoist_label,
     )
-
-
-def is_internet_connected():
-    import socket
-
-    try:
-        with socket.socket(socket.AF_INET) as s:
-            s.connect(("google.com", 80))
-            return True
-    except socket.error:
-        return False
