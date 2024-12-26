@@ -4,6 +4,7 @@ import plistlib
 import re
 import sys
 import typing as t
+from pathlib import Path
 
 import chrome_bookmarks
 import click
@@ -303,6 +304,7 @@ def main(
         return
 
     home_dir = os.path.expanduser("~")
+    local_dir = Path(__file__).parent
 
     if blacklist_domains is None:
         default_domains_path = os.path.join(
@@ -311,7 +313,7 @@ def main(
         blacklist_domains = (
             default_domains_path
             if os.path.exists(default_domains_path)
-            else "blacklist_domains.txt"
+            else str(local_dir / "blacklist_domains.txt")
         )
 
     if blacklist_urls is None:
@@ -322,7 +324,7 @@ def main(
         blacklist_urls = (
             default_urls_path
             if os.path.exists(default_urls_path)
-            else "blacklist_urls.txt"
+            else str(local_dir / "blacklist_urls.txt")
         )
 
     clean_workspace(
