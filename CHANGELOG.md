@@ -1,3 +1,18 @@
+# [0.8.0](https://github.com/iloveitaly/clean-browser/compare/v0.7.0...v0.8.0) (2024-12-26)
+
+
+### Bug Fixes
+
+* bad local blacklist references ([32688ab](https://github.com/iloveitaly/clean-browser/commit/32688ab5b052447b95b0c6e6178f92081906f215))
+* disable archive_old_tasks for now ([81bb4e2](https://github.com/iloveitaly/clean-browser/commit/81bb4e2b141146f93eb6e4ec09ffaf50f26ba7b7))
+
+
+### Features
+
+* adding archive function to pull tasks and move to markdown folder ([52de485](https://github.com/iloveitaly/clean-browser/commit/52de485f54f4fb0d82e047d886aaa531b7f7e6f6))
+
+
+
 # [0.7.0](https://github.com/iloveitaly/clean-browser/compare/v0.6.5...v0.7.0) (2024-09-14)
 
 
@@ -31,15 +46,6 @@
 ### Bug Fixes
 
 * homepage url reference ([bda5462](https://github.com/iloveitaly/clean-browser/commit/bda546251690d7efc4ea5397ca4cbcc79dd35c5a))
-
-
-
-## [0.6.2](https://github.com/iloveitaly/clean-browser/compare/v0.6.1...v0.6.2) (2023-11-28)
-
-
-### Bug Fixes
-
-* adding backoff to all todoist calls ([d2b6f0b](https://github.com/iloveitaly/clean-browser/commit/d2b6f0b1f6e60dd0cb60b17910587d97a6ec90d6))
 
 
 
