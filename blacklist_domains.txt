@@ -69,3 +69,5 @@ ryanair.com
 docs.python.org
 duckduckgo.com
 chat.lindy.ai
+vitacost.com
+iherb.com
