@@ -6,6 +6,8 @@ amazon.com
 /.*1password\.com/
 /.*openai\.com/
 /.*usps\.com/
+/*.localhost/
+portal.azure.com
 grammarly.com
 youtube.com
 calendly.com
