@@ -6,7 +6,7 @@ amazon.com
 /.*1password\.com/
 /.*openai\.com/
 /.*usps\.com/
-/*.localhost/
+/.*localhost/
 portal.azure.com
 grammarly.com
 youtube.com
@@ -73,3 +73,4 @@ duckduckgo.com
 chat.lindy.ai
 vitacost.com
 iherb.com
+airbnb.com
