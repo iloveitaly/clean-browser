@@ -1,3 +1,13 @@
+## [0.8.1](https://github.com/iloveitaly/clean-browser/compare/v0.8.0...v0.8.1) (2025-01-22)
+
+
+### Bug Fixes
+
+* add azure and localhost domains to exclusion list ([a240c77](https://github.com/iloveitaly/clean-browser/commit/a240c770ce24c5e0db7529073a2facd91cd1a319))
+* add more domains ([72b5b4e](https://github.com/iloveitaly/clean-browser/commit/72b5b4e503c7e541d44f6a04243545f70c674a7a))
+
+
+
 # [0.8.0](https://github.com/iloveitaly/clean-browser/compare/v0.7.0...v0.8.0) (2024-12-26)
 
 
@@ -37,15 +47,6 @@
 ### Bug Fixes
 
 * log when task is complete, adding todoist to blocklist ([6bade9a](https://github.com/iloveitaly/clean-browser/commit/6bade9afbc51c59445b705fac90645824d65d1c1))
-
-
-
-## [0.6.3](https://github.com/iloveitaly/clean-browser/compare/v0.6.2...v0.6.3) (2024-03-15)
-
-
-### Bug Fixes
-
-* homepage url reference ([bda5462](https://github.com/iloveitaly/clean-browser/commit/bda546251690d7efc4ea5397ca4cbcc79dd35c5a))
 
 
 
