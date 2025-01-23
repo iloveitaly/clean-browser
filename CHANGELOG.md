@@ -1,3 +1,12 @@
+## [0.8.2](https://github.com/iloveitaly/clean-browser/compare/v0.8.1...v0.8.2) (2025-01-23)
+
+
+### Bug Fixes
+
+* patching order ([7d94e7a](https://github.com/iloveitaly/clean-browser/commit/7d94e7aeabbacbc0fbccf4a80df9ac3692a6b4cb))
+
+
+
 ## [0.8.1](https://github.com/iloveitaly/clean-browser/compare/v0.8.0...v0.8.1) (2025-01-22)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * unclosed py socket error ([e37d358](https://github.com/iloveitaly/clean-browser/commit/e37d3587b476a53ce94de6ece6d252add6078f1f))
-
-
-
-## [0.6.4](https://github.com/iloveitaly/clean-browser/compare/v0.6.3...v0.6.4) (2024-03-20)
-
-
-### Bug Fixes
-
-* log when task is complete, adding todoist to blocklist ([6bade9a](https://github.com/iloveitaly/clean-browser/commit/6bade9afbc51c59445b705fac90645824d65d1c1))
 
 
 
