@@ -6,12 +6,13 @@ import sys
 import typing as t
 from pathlib import Path
 
+import clean_workspace.patch as _  # isort: off
+
 import chrome_bookmarks
 import click
 from ScriptingBridge import SBApplication
 from todoist_api_python.api import TodoistAPI
 
-import clean_workspace.patch as _
 from clean_workspace.archive import archive_old_tasks
 from clean_workspace.internet import wait_for_internet_connection
 
@@ -55,6 +56,7 @@ def export_to_todoist(task_description, description, todoist_project, todoist_la
     print("todoist task created")
 
 
+# TODO need to backoff on [task-runner] [initial_wake] 34:38: execution error: Safari got an error: User canceled. (-128)
 def get_browser_urls() -> t.List[str]:
     browser_urls = []
     chrome = SBApplication.applicationWithBundleIdentifier_("com.google.Chrome")

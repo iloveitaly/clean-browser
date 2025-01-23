@@ -7,6 +7,13 @@ import todoist_api_python.http_requests
 # backoff does not log by default
 logging.getLogger("backoff").addHandler(logging.StreamHandler())
 
+def hash_function_code(func):
+    import hashlib
+    import inspect
+
+    source = inspect.getsource(func)
+    return hashlib.sha256(source.encode()).hexdigest()
+
 
 # https://github.com/Doist/todoist-api-python/issues/38
 # backoff all non-200 errors
@@ -14,10 +21,21 @@ def patch_todoist_api():
     if hasattr(patch_todoist_api, "complete") and patch_todoist_api.complete:
         return
 
-    patch_targets = ["delete", "get", "json", "post"]
+    patch_targets = [
+        ("ef2cb886b6c826b187e0b2ecd9ab406843b0130cc713398c218d6f430f253ea4","delete"),
+        ("818cb060ea340f3cc47bdfbe9ace53470fadd58f6eae829a090ed4740afbb185","get"),
+        ("d5d41e2c29049515d295d81a6d40b4890fbec8d8482cfb401630f8ef2f77e4d5","json"),
+        ("e78617f97603c15e9330beecf4081ca8549605233ba4d65761248c09153652cb","post")
+    ]
 
-    for target in patch_targets:
+    for hash, target in patch_targets:
         original_function = getattr(todoist_api_python.http_requests, target)
+
+        if not original_function:
+            logging.warning(f"could not find {target} in todoist_api_python.http_requests when patching")
+        
+        if (original_function_hash := hash_function_code(original_function)) != hash:
+            logging.warning(f"hash mismatch for {target} in todoist_api_python.http_requests when patching: {original_function_hash}")
 
         setattr(
             todoist_api_python.http_requests,
