@@ -22,7 +22,7 @@ localhost
 cigna.com
 knolbe.com
 groupon.com
-sentry.io
+/.*sentry.io/
 mikebian.co
 401k.com
 fidelitycharitable.com
