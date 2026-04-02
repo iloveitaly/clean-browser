@@ -1,5 +1,4 @@
 import datetime
-import os
 
 from todoist_api_python.api import TodoistAPI
 
@@ -24,7 +23,7 @@ def archive_old_tasks(
     todoist_project: str,
     todoist_label: str,
     archive_threshold_days: int = 360,
-    markdown_path: str = None,
+    markdown_path: str | None = None,
 ):
     dry_run = False
 

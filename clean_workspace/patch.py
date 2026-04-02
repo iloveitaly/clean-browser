@@ -15,10 +15,13 @@ def hash_function_code(func):
     return hashlib.sha256(source.encode()).hexdigest()
 
 
+_patch_complete = False
+
 # https://github.com/Doist/todoist-api-python/issues/38
 # backoff all non-200 errors
 def patch_todoist_api():
-    if hasattr(patch_todoist_api, "complete") and patch_todoist_api.complete:
+    global _patch_complete
+    if _patch_complete:
         return
 
     patch_targets = [
@@ -86,7 +89,8 @@ def patch_todoist_api():
             patched_function2,
         )
 
-    patch_todoist_api.complete = True
+    global _patch_complete
+    _patch_complete = True
 
 
 patch_todoist_api()

@@ -3,8 +3,8 @@
 
 [![Release Notes](https://img.shields.io/github/release/iloveitaly/clean-browser)](https://github.com/iloveitaly/clean-browser/releases)
 [![Downloads](https://static.pepy.tech/badge/clean-workspace/month)](https://pepy.tech/project/clean-workspace)
+![GitHub CI Status](https://github.com/iloveitaly/clean-browser/actions/workflows/build_and_publish.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 
 # Clean Workspace: Archive Web Browser Tabs
 
@@ -22,8 +22,14 @@ This utility has helped my mind and made it easy for me to find interesting thin
 
 ## Installation
 
-```shell
+```bash
 pip install clean-workspace
+```
+
+Or using `uv`:
+
+```bash
+uv tool install clean-workspace
 ```
 
 - `TODOIST_API_KEY` has to exist in your shell environment for the tool to run.
@@ -50,8 +56,8 @@ Options:
 ## Development
 
 ```shell
-poetry install
-poetry run clean-workspace
+uv sync
+uv run clean-workspace
 ```
 
 ### Regex Entries
@@ -95,8 +101,12 @@ api = TodoistAPI(_todoist_api_key())
 
 ## TODO
 
-- [ ] Indicate in python config that this is macOS only in poetry config? I wonder if pyobjc does this in some way?
+- [ ] Indicate in python config that this is macOS only in pyproject.toml? I wonder if pyobjc does this in some way?
 - [ ] move blacklist files into example area of repo
 - [x] look at previous tasks and see if links are contained there before including them again
 - [ ] support google chrome canary
 - [ ] check to make sure regex gdrive urls work
+
+---
+
+*This project was created from [iloveitaly/python-package-template](https://github.com/iloveitaly/python-package-template)*
