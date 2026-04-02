@@ -14,6 +14,9 @@ def _todoist_api_key():
     return os.environ.get("TODOIST_API_KEY", None)
 
 
+def _get_all(iterator):
+    return [item for page in iterator for item in page]
+
 # totally unnecessary for the size of the project...
 @lru_cache(maxsize=None)
 def _get_labels(api, label_text):
@@ -22,7 +25,7 @@ def _get_labels(api, label_text):
         return []
 
     label_name = label_text
-    labels = api.get_labels()
+    labels = _get_all(api.get_labels())
     label_matches = [label for label in labels if label.name == label_name]
 
     # create the label if it doesn't exist
@@ -36,7 +39,7 @@ def _get_labels(api, label_text):
 
 @lru_cache(maxsize=None)
 def _get_project(api, project_name):
-    projects = api.get_projects()
+    projects = _get_all(api.get_projects())
     return only_one([project for project in projects if project.name == project_name])
 
 

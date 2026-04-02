@@ -41,7 +41,7 @@ def archive_old_tasks(
 
     filter_str = _create_filter(project.name, only_one(labels))
 
-    tasks = api.get_tasks(filter=filter_str)
+    tasks = [item for page in api.filter_tasks(query=filter_str) for item in page]
 
     threshold_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(
         days=archive_threshold_days
@@ -51,7 +51,7 @@ def archive_old_tasks(
     markdown_content = ""
 
     for task in tasks:
-        task_date = datetime.datetime.fromisoformat(task.created_at).replace(
+        task_date = datetime.datetime.fromisoformat(str(task.created_at)).replace(
             tzinfo=datetime.timezone.utc
         )
 
@@ -64,7 +64,7 @@ def archive_old_tasks(
             print(f"Would archive task: {task.content} (created on {task_date.date()})")
         else:
             print(f"Archiving task: {task.content} (created on {task_date.date()})")
-            api.close_task(task_id=task.id)
+            api.complete_task(task_id=task.id)
 
         archived_count += 1
 

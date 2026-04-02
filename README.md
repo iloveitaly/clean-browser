@@ -23,12 +23,6 @@ This utility has helped my mind and made it easy for me to find interesting thin
 ## Installation
 
 ```bash
-pip install clean-workspace
-```
-
-Or using `uv`:
-
-```bash
 uv tool install clean-workspace
 ```
 
