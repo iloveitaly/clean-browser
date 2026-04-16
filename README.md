@@ -24,11 +24,22 @@ This utility has helped my mind and made it easy for me to find interesting thin
 
 ```bash
 uv tool install clean-workspace
+# Install with optional AI summarization support
+uv tool install "clean-workspace[ai]"
 ```
 
 - `TODOIST_API_KEY` has to exist in your shell environment for the tool to run.
   I recommend using [direnv](https://direnv.net/) to do this. Add your todoist token to `.envrc` and `direnv allow .`
 - Customize the url and domain blacklist
+
+### AI Summarization (Optional)
+
+If installed with the `[ai]` extra, the tool can automatically generate a 3-7 word summary of your links if `--tab-description` is not provided.
+
+Configuration is via environment variables:
+- `CLEAN_WORKSPACE_AI_KEY`: Your AI provider API key (e.g., Gemini, OpenAI, Anthropic).
+- `CLEAN_WORKSPACE_MODEL`: The model to use (default: `gemini:gemini-3-flash-preview`). Supports any provider supported by [pydantic-ai](https://ai.pydantic.dev/models/overview/).
+
 
 ## Usage
 
