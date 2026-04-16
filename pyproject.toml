@@ -17,6 +17,9 @@ urls = { "Repository" = "https://github.com/iloveitaly/clean-browser" }
 license = { text = "MIT" }
 
 # additional packaging information: https://packaging.python.org/en/latest/specifications/core-metadata/#license
+[project.optional-dependencies]
+ai = ["pydantic-ai-slim[google]"]
+
 [project.scripts]
 clean-workspace = "clean_workspace:main"
 
