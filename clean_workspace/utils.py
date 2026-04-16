@@ -17,6 +17,7 @@ def _todoist_api_key():
 def _get_all(iterator):
     return [item for page in iterator for item in page]
 
+
 # totally unnecessary for the size of the project...
 @lru_cache(maxsize=None)
 def _get_labels(api, label_text):

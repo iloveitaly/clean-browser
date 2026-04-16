@@ -43,17 +43,13 @@ def archive_old_tasks(
 
     tasks = [item for page in api.filter_tasks(query=filter_str) for item in page]
 
-    threshold_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(
-        days=archive_threshold_days
-    )
+    threshold_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=archive_threshold_days)
 
     archived_count = 0
     markdown_content = ""
 
     for task in tasks:
-        task_date = datetime.datetime.fromisoformat(str(task.created_at)).replace(
-            tzinfo=datetime.timezone.utc
-        )
+        task_date = datetime.datetime.fromisoformat(str(task.created_at)).replace(tzinfo=datetime.timezone.utc)
 
         if task_date > threshold_date:
             continue
@@ -74,9 +70,7 @@ def archive_old_tasks(
 
         print(f"Appended archived tasks to {markdown_path}")
     else:
-        print(
-            f"No tasks were archived or no markdown path was provided. {markdown_content}"
-        )
+        print(f"No tasks were archived or no markdown path was provided. {markdown_content}")
 
     if dry_run:
         print(f"Dry run complete. {archived_count} tasks would be archived.")
