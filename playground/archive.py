@@ -2,7 +2,7 @@ import datetime
 
 from todoist_api_python.api import TodoistAPI
 
-from .utils import _get_labels, _get_project, _todoist_api_key, only_one
+from clean_workspace.utils import _get_labels, _get_project, _todoist_api_key, only_one
 
 
 def _create_filter(project_name: str, label: str) -> str:
@@ -76,3 +76,12 @@ def archive_old_tasks(
         print(f"Dry run complete. {archived_count} tasks would be archived.")
     else:
         print(f"Task archiving complete. {archived_count} tasks archived.")
+
+
+if __name__ == "__main__":
+    archive_old_tasks(
+        "Web Archive",
+        "web-archive",
+        30,
+        "/Users/mike/Dropbox/Writing/Web Archive.md",
+    )

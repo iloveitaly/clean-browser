@@ -12,7 +12,6 @@ from ScriptingBridge import SBApplication  # type: ignore
 from todoist_api_python.api import TodoistAPI
 
 import clean_workspace.patch as _  # noqa: F401
-from clean_workspace.archive import archive_old_tasks  # noqa: F401
 from clean_workspace.internet import wait_for_internet_connection
 
 from .utils import (
@@ -26,7 +25,6 @@ from .utils import (
 
 def export_to_todoist(task_description, description, todoist_project, todoist_label):
     key = _todoist_api_key()
-    # trunk-ignore(bandit/B101)
     assert key is not None
     api = TodoistAPI(key)
 
@@ -93,9 +91,7 @@ def get_bookmarks_urls() -> t.List[str]:
     return [bookmark.split("#")[0] for bookmark in raw_bookmark_urls]
 
 
-# TODO trunk ignore should be cleaner
 def restart_application(app_name: str) -> None:
-    # trunk-ignore-begin(bandit)
     os.system(
         f"""
     osascript -e '
@@ -105,7 +101,6 @@ def restart_application(app_name: str) -> None:
     '
     """
     )
-    # trunk-ignore-end(bandit)
 
 
 def quit_browsers():
@@ -310,10 +305,3 @@ def main(tab_description, blacklist_domains, blacklist_urls, todoist_label, todo
         todoist_project,
         todoist_label,
     )
-
-    # archive_old_tasks(
-    #     todoist_project,
-    #     todoist_label,
-    #     30,
-    #     "/Users/mike/Dropbox/Writing/Web Archive.md",
-    # )
