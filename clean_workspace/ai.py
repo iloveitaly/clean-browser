@@ -32,7 +32,7 @@ def update_env_variables():
 
     for key in list(os.environ.keys()):
         if key.startswith(prefix):
-            base_key = key[len(prefix):]
+            base_key = key[len(prefix) :]
             os.environ[base_key] = os.environ[key]
 
     # Universal key mapping
