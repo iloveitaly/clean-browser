@@ -1,6 +1,3 @@
-<!-- trunk-ignore-all(trufflehog/GitHubOauth2) -->
-<!-- trunk-ignore-all(markdownlint/MD041) -->
-
 [![Release Notes](https://img.shields.io/github/release/iloveitaly/clean-browser)](https://github.com/iloveitaly/clean-browser/releases)
 [![Downloads](https://static.pepy.tech/badge/clean-workspace/month)](https://pepy.tech/project/clean-workspace)
 ![GitHub CI Status](https://github.com/iloveitaly/clean-browser/actions/workflows/build_and_publish.yml/badge.svg)
@@ -104,13 +101,6 @@ api = TodoistAPI(_todoist_api_key())
 - <https://gist.github.com/aleks-mariusz/cc27b21f2c5b91fbd285>
 - <https://github.com/tominsam/shelf-python/blob/f357d9b147fa651034b71501edabf65f59d5befa/extractors/ComAppleSafari.py#L11>
 
-## TODO
-
-- [ ] Indicate in python config that this is macOS only in pyproject.toml? I wonder if pyobjc does this in some way?
-- [ ] move blacklist files into example area of repo
-- [x] look at previous tasks and see if links are contained there before including them again
-- [ ] support google chrome canary
-- [ ] check to make sure regex gdrive urls work
 
 ---
 
