@@ -58,7 +58,7 @@ Options:
 ## Development
 
 ```shell
-uv sync
+uv sync --all-extras
 uv run clean-workspace
 ```
 

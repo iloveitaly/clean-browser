@@ -45,6 +45,7 @@ dev = [
 exclude = ["examples/", "playground/", "tmp/", ".venv/", "tests/"]
 
 [tool.pytest.ini_options]
+testpaths = ["tests"]
 addopts = ""
 
 [tool.coverage.run]
