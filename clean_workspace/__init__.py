@@ -94,7 +94,7 @@ def get_bookmarks_urls() -> t.List[str]:
 def restart_application(app_name: str) -> None:
     os.system(f"osascript -e 'tell application \"{app_name}\" to quit'")
     os.system("sleep 1")
-    os.system(f"open -a \"{app_name}\"")
+    os.system(f'open -a "{app_name}"')
 
 
 def quit_browsers():
