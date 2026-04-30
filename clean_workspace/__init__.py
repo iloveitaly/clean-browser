@@ -92,20 +92,14 @@ def get_bookmarks_urls() -> t.List[str]:
 
 
 def restart_application(app_name: str) -> None:
-    os.system(
-        f"""
-    osascript -e '
-    tell application "{app_name}" to quit
-    delay 1
-    tell application "{app_name}" to activate
-    '
-    """
-    )
+    os.system(f"osascript -e 'tell application \"{app_name}\" to quit'")
+    os.system("sleep 1")
+    os.system(f"open -a \"{app_name}\"")
 
 
 def quit_browsers():
     restart_application("Safari")
-    restart_application("Chrome")
+    restart_application("Google Chrome")
 
 
 # the syntax we use is starting and ending with `/`, like sed
