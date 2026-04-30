@@ -1,6 +1,6 @@
 [project]
 name = "clean-workspace"
-version = "0.8.1"
+version = "0.9.0"
 description = "Collect all browser URLs, output to terminal, and archive to todoist. Useful for cleaning up your workspace at the end of the day, without loosing important urls."
 keywords = ["todoist", "browser", "productivity"]
 readme = "README.md"
