@@ -23,7 +23,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: jdx/mise-action@v4
+      - uses: jdx/mise-action@v4.2.3
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync --all-extras
       - run: just lint
@@ -38,7 +38,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
-      - uses: jdx/mise-action@v4
+      - uses: jdx/mise-action@v4.2.3
       - run: mise use python@${{ matrix.python-version }}
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync --all-extras
@@ -75,7 +75,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
-      - uses: jdx/mise-action@v4
+      - uses: jdx/mise-action@v4.2.3
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync --all-extras
       - run: uv build
