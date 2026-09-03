@@ -1,3 +1,7 @@
+# Line recipes and [script] recipes both use zsh with strict mode.
+set shell := ["zsh", "-euo", "pipefail", "-c"]
+set script-interpreter := ["zsh", "-euo", "pipefail"]
+
 # Set up the Python environment, done automatically for you when using direnv
 setup:
     [ -f .env ] || cp .env-example .env
@@ -11,7 +15,20 @@ docker_up:
 docker_down:
 	docker compose down
 
-# Run tests
+# Upgrade tool versions, python dependencies, and optionally bump pyproject.toml constraints
+[script]
+[arg("bump_constraints", long="bump-constraints", value="true", help="Bump pyproject.toml minimum constraints using uv-bump")]
+upgrade bump_constraints="false":
+    mise self-update --yes
+    mise upgrade --yes --local
+    uv sync --all-groups --all-extras -U
+
+    if [ "{{bump_constraints}}" = "true" ]; then
+        echo "Bumping pyproject.toml minimum constraints with uv-bump..."
+        uvx uv-bump -v
+    fi
+
+
 test:
     uv run pytest -v
 
@@ -28,7 +45,7 @@ lint FILES=".":
 
         uv run pyright {{FILES}} --outputjson > pyright_report.json || exit_code=$?
         jq -r \
-            --arg root "$GITHUB_WORKSPACE/" \
+            --arg root "${GITHUB_WORKSPACE:-}/" \
             '
                 .generalDiagnostics[] |
                 .file as $file |

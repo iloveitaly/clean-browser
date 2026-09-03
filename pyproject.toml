@@ -16,12 +16,14 @@ authors = [{ name = "Mike Bianco", email = "mike@mikebian.co" }]
 urls = { "Repository" = "https://github.com/iloveitaly/clean-browser" }
 license = { text = "MIT" }
 
+
 # additional packaging information: https://packaging.python.org/en/latest/specifications/core-metadata/#license
 [project.optional-dependencies]
 ai = ["pydantic-ai-slim[google]"]
 
 [project.scripts]
 clean-workspace = "clean_workspace:main"
+
 
 [build-system]
 requires = ["uv_build>=0.11.0,<0.13"]
@@ -54,7 +56,3 @@ source = ["clean_workspace"]
 
 [tool.coverage.report]
 fail_under = 0
-
-[tool.ruff]
-line-length = 120
-extend-exclude = ["playground.py", "playground/"]

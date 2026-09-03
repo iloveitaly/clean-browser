@@ -6,6 +6,8 @@ import sys
 import typing as t
 from pathlib import Path
 
+from .version import __version__
+
 import chrome_bookmarks
 import click
 from ScriptingBridge import SBApplication  # type: ignore
