@@ -7,6 +7,14 @@
 
 
 
+## [0.9.1](https://github.com/iloveitaly/clean-browser/compare/v0.9.0...v0.9.1) (2026-09-06)
+
+
+### Bug Fixes
+
+* resolve linting, formatting, and type-checking issues ([2c384e8](https://github.com/iloveitaly/clean-browser/commit/2c384e882330355c2eeafb9413ad2c8754adc065))
+* wait for browser termination before relaunching ([0afed98](https://github.com/iloveitaly/clean-browser/commit/0afed98d13e8c7b81076362644f2de30b6d87256))
+
 ## [0.9.0](https://github.com/iloveitaly/clean-browser/compare/v0.8.2...v0.9.0) (2026-04-30)
 
 
