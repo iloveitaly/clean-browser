@@ -1,5 +1,8 @@
+import logging
 import os
 from typing import List, Tuple
+
+logging.getLogger("google_genai").setLevel(logging.ERROR)
 
 
 DEFAULT_MODEL = "gemini:gemini-3-flash-preview"
@@ -90,7 +93,7 @@ def summarize_links(links: List[Tuple[str, str]]) -> str:
             model_settings = GoogleModelSettings(
                 google_thinking_config={
                     "include_thoughts": True,
-                    "thinking_level": ThinkingLevel.MINIMAL,
+                    "thinking_level": ThinkingLevel.LOW,
                 }
             )
     except ImportError:
@@ -103,6 +106,12 @@ def summarize_links(links: List[Tuple[str, str]]) -> str:
         result = agent.run_sync(links_text, model_settings=model_settings)
         return result.output.strip() if result.output else ""
     except (ModelHTTPError, ModelAPIError) as e:
+        if model_settings is not None:
+            try:
+                result = agent.run_sync(links_text)
+                return result.output.strip() if result.output else ""
+            except (ModelHTTPError, ModelAPIError):
+                pass
         print(f"AI API error: {e}. Falling back to no summary.")
         return ""
     except Exception as e:

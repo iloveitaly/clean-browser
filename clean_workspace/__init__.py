@@ -3,8 +3,16 @@ import os
 import plistlib
 import re
 import sys
+import time
 import typing as t
 from pathlib import Path
+
+from AppKit import (
+    NSRunningApplication,
+    NSWorkspace,
+    NSWorkspaceDidTerminateApplicationNotification,
+)
+from Foundation import NSDate, NSRunLoop
 
 from .version import __version__
 
@@ -55,17 +63,19 @@ def get_browser_urls() -> t.List[str]:
     browser_urls = []
     chrome = SBApplication.applicationWithBundleIdentifier_("com.google.Chrome")
 
-    for window in chrome.windows():
-        for tab in window.tabs():
-            browser_urls.append((tab.URL(), tab.name()))
+    if chrome and chrome.isRunning():
+        for window in chrome.windows():
+            for tab in window.tabs():
+                browser_urls.append((tab.URL(), tab.name()))
 
-    safari = SBApplication.applicationWithBundleIdentifier_("com.apple.safari")
+    safari = SBApplication.applicationWithBundleIdentifier_("com.apple.Safari")
 
-    for window in safari.windows():
-        for tab in window.tabs():
-            browser_urls.append((tab.URL(), tab.name()))
-            # it doesn't look possible to close out the tabs with SBApplication :/
-            # instead we just close out the whole application below
+    if safari and safari.isRunning():
+        for window in safari.windows():
+            for tab in window.tabs():
+                browser_urls.append((tab.URL(), tab.name()))
+                # it doesn't look possible to close out the tabs with SBApplication :/
+                # instead we just close out the whole application below
 
     return browser_urls
 
@@ -93,15 +103,53 @@ def get_bookmarks_urls() -> t.List[str]:
     return [bookmark.split("#")[0] for bookmark in raw_bookmark_urls]
 
 
-def restart_application(app_name: str) -> None:
-    os.system(f"osascript -e 'tell application \"{app_name}\" to quit'")
-    os.system("sleep 1")
+APP_BUNDLE_IDS = {
+    "Safari": "com.apple.Safari",
+    "Google Chrome": "com.google.Chrome",
+}
+
+
+def restart_application(app_name: str, bundle_id: t.Optional[str] = None, timeout: float = 10.0) -> None:
+    bundle_id = bundle_id or APP_BUNDLE_IDS.get(app_name)
+    if not bundle_id:
+        os.system(f"osascript -e 'tell application \"{app_name}\" to quit'")
+        os.system(f'open -a "{app_name}"')
+        return
+
+    apps = NSRunningApplication.runningApplicationsWithBundleIdentifier_(bundle_id)
+    if not apps:
+        return
+
+    ws = NSWorkspace.sharedWorkspace()
+    nc = ws.notificationCenter()
+    terminated = []
+
+    def on_terminate(notification):
+        app = notification.userInfo().objectForKey_("NSWorkspaceApplicationKey")
+        if app and app.bundleIdentifier() == bundle_id:
+            terminated.append(True)
+
+    observer = nc.addObserverForName_object_queue_usingBlock_(
+        NSWorkspaceDidTerminateApplicationNotification,
+        None,
+        None,
+        on_terminate,
+    )
+
+    try:
+        os.system(f"osascript -e 'tell application \"{app_name}\" to quit'")
+        start = time.time()
+        while not terminated and (time.time() - start) < timeout:
+            NSRunLoop.currentRunLoop().runUntilDate_(NSDate.dateWithTimeIntervalSinceNow_(0.05))
+    finally:
+        nc.removeObserver_(observer)
+
     os.system(f'open -a "{app_name}"')
 
 
 def quit_browsers():
-    restart_application("Safari")
-    restart_application("Google Chrome")
+    restart_application("Safari", timeout=10.0)
+    restart_application("Google Chrome", timeout=10.0)
 
 
 # the syntax we use is starting and ending with `/`, like sed
