@@ -15,7 +15,7 @@ def wait_for_internet_connection():
         return
 
     # raise a generic py exception to trigger a retry
-    raise Exception("no internet connection")
+    raise Exception("no internet connection")  # noqa: TRY002
 
 
 def is_internet_connected():
@@ -25,5 +25,5 @@ def is_internet_connected():
         with socket.socket(socket.AF_INET) as s:
             s.connect(("google.com", 80))
             return True
-    except socket.error:
+    except OSError:
         return False

@@ -1,11 +1,11 @@
 import os
 import re
-from functools import lru_cache
+from functools import cache
 
 
 def only_one(comprehension):
     if len(comprehension) != 1:
-        raise Exception("Expected to find exactly one matching item")
+        raise Exception("Expected to find exactly one matching item")  # noqa: TRY002
 
     return comprehension[0]
 
@@ -19,7 +19,7 @@ def _get_all(iterator):
 
 
 # totally unnecessary for the size of the project...
-@lru_cache(maxsize=None)
+@cache
 def _get_labels(api, label_text):
     # allow empty labels as a valid value
     if not label_text:
@@ -38,7 +38,7 @@ def _get_labels(api, label_text):
     return [label_name]
 
 
-@lru_cache(maxsize=None)
+@cache
 def _get_project(api, project_name):
     projects = _get_all(api.get_projects())
     return only_one([project for project in projects if project.name == project_name])

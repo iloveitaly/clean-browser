@@ -4,20 +4,16 @@ import plistlib
 import re
 import sys
 import time
-import typing as t
 from pathlib import Path
-
-from AppKit import (
-    NSRunningApplication,
-    NSWorkspace,
-    NSWorkspaceDidTerminateApplicationNotification,
-)
-from Foundation import NSDate, NSRunLoop
-
-from .version import __version__
 
 import chrome_bookmarks
 import click
+from AppKit import (
+    NSRunningApplication,  # type: ignore
+    NSWorkspace,  # type: ignore
+    NSWorkspaceDidTerminateApplicationNotification,  # type: ignore
+)
+from Foundation import NSDate, NSRunLoop  # type: ignore
 from ScriptingBridge import SBApplication  # type: ignore
 from todoist_api_python.api import TodoistAPI
 
@@ -31,6 +27,7 @@ from .utils import (
     _todoist_api_key,
     only_one,
 )
+from .version import __version__ as __version__
 
 
 def export_to_todoist(task_description, description, todoist_project, todoist_label):
@@ -41,7 +38,7 @@ def export_to_todoist(task_description, description, todoist_project, todoist_la
     project = _get_project(api, todoist_project)
     labels = _get_labels(api, todoist_label)
 
-    date_str = datetime.datetime.now().strftime("%Y-%m-%d")
+    date_str = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d")
     task_content = f"{date_str}: {description}" if description else date_str
 
     # https://developer.todoist.com/rest/v2#create-a-new-task
@@ -59,7 +56,7 @@ def export_to_todoist(task_description, description, todoist_project, todoist_la
 
 
 # TODO need to backoff on [task-runner] [initial_wake] 34:38: execution error: Safari got an error: User canceled. (-128)
-def get_browser_urls() -> t.List[str]:
+def get_browser_urls() -> list[str]:
     browser_urls = []
     chrome = SBApplication.applicationWithBundleIdentifier_("com.google.Chrome")
 
@@ -80,7 +77,7 @@ def get_browser_urls() -> t.List[str]:
     return browser_urls
 
 
-def get_bookmarks_urls() -> t.List[str]:
+def get_bookmarks_urls() -> list[str]:
     raw_bookmark_urls = [bookmark.url for bookmark in chrome_bookmarks.urls]
 
     # read all safari bookmarks, don't include these in the printout
@@ -92,11 +89,15 @@ def get_bookmarks_urls() -> t.List[str]:
         Out[31]: ['History', 'BookmarksBar', 'BookmarksMenu', 'com.apple.ReadingList']
         """
 
-        safari_bookmarks = [child for child in bookmarks_plist["Children"] if child["Title"] == "BookmarksBar"][0][
-            "Children"
-        ]
+        safari_bookmarks = next(
+            child
+            for child in bookmarks_plist["Children"]
+            if child["Title"] == "BookmarksBar"
+        )["Children"]
 
-        raw_safari_bookmark_urls = [bookmark["URLString"] for bookmark in safari_bookmarks]
+        raw_safari_bookmark_urls = [
+            bookmark["URLString"] for bookmark in safari_bookmarks
+        ]
 
         raw_bookmark_urls.extend(raw_safari_bookmark_urls)
 
@@ -109,7 +110,9 @@ APP_BUNDLE_IDS = {
 }
 
 
-def restart_application(app_name: str, bundle_id: t.Optional[str] = None, timeout: float = 10.0) -> None:
+def restart_application(
+    app_name: str, bundle_id: str | None = None, timeout: float = 10.0
+) -> None:
     bundle_id = bundle_id or APP_BUNDLE_IDS.get(app_name)
     if not bundle_id:
         os.system(f"osascript -e 'tell application \"{app_name}\" to quit'")
@@ -140,7 +143,9 @@ def restart_application(app_name: str, bundle_id: t.Optional[str] = None, timeou
         os.system(f"osascript -e 'tell application \"{app_name}\" to quit'")
         start = time.time()
         while not terminated and (time.time() - start) < timeout:
-            NSRunLoop.currentRunLoop().runUntilDate_(NSDate.dateWithTimeIntervalSinceNow_(0.05))
+            NSRunLoop.currentRunLoop().runUntilDate_(
+                NSDate.dateWithTimeIntervalSinceNow_(0.05)
+            )
     finally:
         nc.removeObserver_(observer)
 
@@ -184,9 +189,15 @@ def _get_existing_web_archive_links(todoist_project, todoist_label):
     if labels:
         filter += f" & @{only_one(labels)}"
 
-    all_web_archive_tasks = [item for page in api.filter_tasks(query=filter) for item in page]
-    all_web_archive_links = [_extract_urls_from_markdown(task.content) for task in all_web_archive_tasks]
-    all_web_archive_links = [item for sublist in all_web_archive_links for item in sublist]
+    all_web_archive_tasks = [
+        item for page in api.filter_tasks(query=filter) for item in page
+    ]
+    all_web_archive_links = [
+        _extract_urls_from_markdown(task.content) for task in all_web_archive_tasks
+    ]
+    all_web_archive_links = [
+        item for sublist in all_web_archive_links for item in sublist
+    ]
 
     return all_web_archive_links
 
@@ -214,7 +225,7 @@ def clean_workspace(
 
     # user configurable blacklist for urls you don't want to archive
     url_blacklist = []
-    with open(blacklist_urls_file_path, "r") as f:
+    with open(blacklist_urls_file_path) as f:
         url_blacklist = f.read().splitlines()
 
     # split url_blacklist into regex_blacklist and url_blacklist
@@ -223,31 +234,45 @@ def clean_workspace(
     url_blacklist = [entry for entry in url_blacklist if not _is_regex_entry(entry)]
 
     domain_blacklist = []
-    with open(blacklist_domains_file_path, "r") as f:
+    with open(blacklist_domains_file_path) as f:
         domain_blacklist = f.read().splitlines()
 
-        domain_regex_blacklist = [domain for domain in domain_blacklist if _is_regex_entry(domain)]
+        domain_regex_blacklist = [
+            domain for domain in domain_blacklist if _is_regex_entry(domain)
+        ]
 
         # filter out all regex entries
-        domain_blacklist = [domain for domain in domain_blacklist if not _is_regex_entry(domain)]
+        domain_blacklist = [
+            domain for domain in domain_blacklist if not _is_regex_entry(domain)
+        ]
 
         # add a `www.` prefix to each domain in the blacklist and merge it with the existing list
         domain_blacklist = domain_blacklist + [
-            "www." + domain for domain in domain_blacklist if not _is_regex_entry(domain)
+            "www." + domain
+            for domain in domain_blacklist
+            if not _is_regex_entry(domain)
         ]
 
     bookmark_urls = get_bookmarks_urls()
 
     # TODO output skipped domains if verbose flag is set
 
-    browser_urls = [x for x in browser_urls if _extract_host(x[0]) not in domain_blacklist]
+    browser_urls = [
+        x for x in browser_urls if _extract_host(x[0]) not in domain_blacklist
+    ]
 
-    browser_urls = [x for x in browser_urls if not _in_regex_blacklist(domain_regex_blacklist, _extract_host(x[0]))]
+    browser_urls = [
+        x
+        for x in browser_urls
+        if not _in_regex_blacklist(domain_regex_blacklist, _extract_host(x[0]))
+    ]
 
     browser_urls = [x for x in browser_urls if x[0] not in url_blacklist]
 
     # regex url blacklist is separate from the url blacklist
-    browser_urls = [x for x in browser_urls if not _in_regex_blacklist(url_regex_blacklist, x[0])]
+    browser_urls = [
+        x for x in browser_urls if not _in_regex_blacklist(url_regex_blacklist, x[0])
+    ]
 
     # now do the regular url blacklist
     browser_urls = [x for x in browser_urls if x[0] not in url_blacklist]
@@ -255,7 +280,9 @@ def clean_workspace(
     # if the url is in the bookmark list of chrome or safari, skip it
     browser_urls = [x for x in browser_urls if x[0] not in bookmark_urls]
 
-    existing_archived_links = _get_existing_web_archive_links(todoist_project, todoist_label)
+    existing_archived_links = _get_existing_web_archive_links(
+        todoist_project, todoist_label
+    )
 
     # filter out all urls that have already been archived
     browser_urls = [x for x in browser_urls if x[0] not in existing_archived_links]
@@ -273,10 +300,9 @@ def clean_workspace(
     try:
         from clean_workspace.ai import summarize_links
 
-        if not tab_description:
-            if summary := summarize_links(browser_urls):
-                tab_description = summary
-                print(summary)
+        if not tab_description and (summary := summarize_links(browser_urls)):
+            tab_description = summary
+            print(summary)
     except ImportError:
         pass
 
@@ -319,7 +345,9 @@ def _generate_todoist_content(browser_urls):
     show_default=True,
     help="project in todoist for all created tasks",
 )
-def main(tab_description, blacklist_domains, blacklist_urls, todoist_label, todoist_project):
+def main(
+    tab_description, blacklist_domains, blacklist_urls, todoist_label, todoist_project
+):
     wait_for_internet_connection()
 
     if not _todoist_api_key():
@@ -330,16 +358,24 @@ def main(tab_description, blacklist_domains, blacklist_urls, todoist_label, todo
     local_dir = Path(__file__).parent
 
     if blacklist_domains is None:
-        default_domains_path = os.path.join(home_dir, ".config", "clean-workspace", "blacklist_domains.txt")
+        default_domains_path = os.path.join(
+            home_dir, ".config", "clean-workspace", "blacklist_domains.txt"
+        )
         blacklist_domains = (
-            default_domains_path if os.path.exists(default_domains_path) else str(local_dir / "blacklist_domains.txt")
+            default_domains_path
+            if os.path.exists(default_domains_path)
+            else str(local_dir / "blacklist_domains.txt")
         )
 
     if blacklist_urls is None:
-        default_urls_path = os.path.join(home_dir, ".config", "clean-workspace", "blacklist_urls.txt")
+        default_urls_path = os.path.join(
+            home_dir, ".config", "clean-workspace", "blacklist_urls.txt"
+        )
 
         blacklist_urls = (
-            default_urls_path if os.path.exists(default_urls_path) else str(local_dir / "blacklist_urls.txt")
+            default_urls_path
+            if os.path.exists(default_urls_path)
+            else str(local_dir / "blacklist_urls.txt")
         )
 
     clean_workspace(

@@ -1,6 +1,5 @@
 import logging
 import os
-from typing import List, Tuple
 
 logging.getLogger("google_genai").setLevel(logging.ERROR)
 
@@ -49,21 +48,24 @@ update_env_variables()
 
 
 # This will raise ImportError if pydantic-ai is not installed
-from pydantic_ai import Agent  # noqa: E402
-from pydantic_ai.exceptions import ModelAPIError, ModelHTTPError  # noqa: E402
+from pydantic_ai import Agent
+from pydantic_ai.exceptions import ModelAPIError, ModelHTTPError
 
-
-MODEL_NAME = os.environ.get("MODEL") or os.environ.get("CLEAN_WORKSPACE_MODEL") or DEFAULT_MODEL
+MODEL_NAME = (
+    os.environ.get("MODEL") or os.environ.get("CLEAN_WORKSPACE_MODEL") or DEFAULT_MODEL
+)
 PROMPT_CUTOFF = 10000
 
 
-def summarize_links(links: List[Tuple[str, str]]) -> str:
+def summarize_links(links: list[tuple[str, str]]) -> str:
     """
     Summarizes the provided links into a 3-7 word summary using pydantic-ai.
     Returns an empty string if no API key is configured or on error.
     """
     # Check if an API key is available
-    if not os.environ.get("CLEAN_WORKSPACE_AI_KEY") and not any(k.endswith("_API_KEY") for k in os.environ.keys()):
+    if not os.environ.get("CLEAN_WORKSPACE_AI_KEY") and not any(
+        k.endswith("_API_KEY") for k in os.environ
+    ):
         return ""
 
     prompt = "You are a helpful assistant. Please provide a 3-7 word summary of the following links of the day."
@@ -73,7 +75,7 @@ def summarize_links(links: List[Tuple[str, str]]) -> str:
     # but the `google-genai` package is missing) without breaking the core archiving flow.
     try:
         agent = Agent(MODEL_NAME, system_prompt=prompt)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"AI Agent creation error (perhaps missing provider dependency?): {e}")
         return ""
 
@@ -114,6 +116,6 @@ def summarize_links(links: List[Tuple[str, str]]) -> str:
                 pass
         print(f"AI API error: {e}. Falling back to no summary.")
         return ""
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"Unexpected AI error: {e}. Falling back to no summary.")
         return ""
