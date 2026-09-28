@@ -74,3 +74,5 @@ chat.lindy.ai
 vitacost.com
 iherb.com
 airbnb.com
+/.*venmo\.com/
+/.*puzzle\.io/

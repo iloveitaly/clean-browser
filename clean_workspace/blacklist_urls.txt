@@ -15,3 +15,4 @@ https://www.dropbox.com/login
 https://www.linkedin.com/feed/
 https://www.linkedin.com/in/biancophilly/
 https://www.linkedin.com/mynetwork/
+/https://github\.com/notifications?.*/
