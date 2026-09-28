@@ -7,6 +7,13 @@
 
 
 
+## [0.10.0](https://github.com/iloveitaly/clean-browser/compare/v0.9.1...v0.10.0) (2026-09-28)
+
+
+### Features
+
+* add GitHub notifications, Venmo, and Puzzle to blacklist ([e206f47](https://github.com/iloveitaly/clean-browser/commit/e206f4783fdd1bcdd577c33ea34c8f376877f494))
+
 ## [0.9.1](https://github.com/iloveitaly/clean-browser/compare/v0.9.0...v0.9.1) (2026-09-06)
 
 
