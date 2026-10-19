@@ -26,7 +26,7 @@ clean-workspace = "clean_workspace:main"
 
 
 [build-system]
-requires = ["uv_build>=0.11.0,<0.13"]
+requires = ["uv_build>=0.11.0,<0.14"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
